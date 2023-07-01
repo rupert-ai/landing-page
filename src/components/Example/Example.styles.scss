@@ -1,0 +1,31 @@
+.example-item {
+    width: 144rem;
+    height: 144rem;
+    background-image: linear-gradient(129deg, #000, #fff);
+    cursor: pointer;
+    .example-item-image{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .example-item {
+        width: auto;
+        height: 160rem;
+        width: 160rem;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .example-item {
+        width: 155rem;
+        height: 155rem;
+    }
+}
+@media screen and (max-width: 479px) {
+    .example-item {
+        width: 116rem;
+        height: 116rem;
+    }
+}
