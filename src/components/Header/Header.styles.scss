@@ -1,0 +1,89 @@
+.header {
+    height: 58rem;
+    padding: 16rem 24rem;
+    position: absolute;
+    top: 0%;
+    bottom: auto;
+    left: 0%;
+    right: 0%;
+    .burger {
+        display: none;
+    }
+    .header__wrapper {
+        max-width: 1440px;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        .header__logo-icon {
+            width: 85rem;
+            height: 21rem;
+            max-width: none;
+            display: block;
+        }
+        .header__menu {
+            grid-column-gap: 20rem;
+            align-items: center;
+            display: flex;
+            .header__navigation {
+                grid-column-gap: 20rem;
+                justify-content: flex-end;
+                align-items: center;
+                display: flex;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .header {
+        .header__logo-link {
+            z-index: 1;
+            position: relative;
+        }
+        .header__menu {
+            background-color: #171718;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 120rem 24rem 64rem;
+            position: fixed;
+            top: 0%;
+            bottom: 0%;
+            left: 0%;
+            right: 0%;
+            transform: translate(100%);
+            .header__navigation {
+                grid-row-gap: 24rem;
+                flex-direction: column;
+                align-self: stretch;
+                align-items: flex-start;
+                display: flex;
+            }
+            .button {
+                font-weight: 400;
+                .text--button {
+                    font-size: 32rem;
+                    letter-spacing: 0.02em;
+                }
+            }
+        }
+
+        .burger {
+            z-index: 1;
+            grid-column-gap: 8rem;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            position: relative;
+            color: #ffffff;
+            .text--burger {
+                letter-spacing: 0.0133333em;
+                font-size: 12rem;
+                font-weight: 600;
+                line-height: 1.75;
+            }
+        }
+    }
+}
