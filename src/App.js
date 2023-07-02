@@ -6,6 +6,7 @@ import Hero from "./sections/Hero/Hero.section";
 import Demo from "./sections/Demo/Demo.section";
 
 function App() {
+
     return (
         <div className="main">
             <Header />

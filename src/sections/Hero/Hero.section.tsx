@@ -1,8 +1,116 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
+import gsap from "gsap";
 import "./Hero.styles.scss";
 import Button from "../../components/Button/Button.component";
 
+import heroGridPlaceholderA from "../../assets/images/hero-grid/hero-grid-placeholders/grid-placeholder-1.svg";
+import heroGridPlaceholderB from "../../assets/images/hero-grid/hero-grid-placeholders/grid-placeholder-2.svg";
+
+import heroGridImageA from "../../assets/images/hero-grid/hero-grid-images/grid-image-1.webp";
+import heroGridImageB from "../../assets/images/hero-grid/hero-grid-images/grid-image-2.webp";
+import heroGridImageC from "../../assets/images/hero-grid/hero-grid-images/grid-image-3.webp";
+import heroGridImageD from "../../assets/images/hero-grid/hero-grid-images/grid-image-4.webp";
+import heroGridImageE from "../../assets/images/hero-grid/hero-grid-images/grid-image-5.webp";
+import heroGridImageF from "../../assets/images/hero-grid/hero-grid-images/grid-image-6.webp";
+import heroGridImageG from "../../assets/images/hero-grid/hero-grid-images/grid-image-7.webp";
+import heroGridImageH from "../../assets/images/hero-grid/hero-grid-images/grid-image-8.webp";
+import heroGridImageI from "../../assets/images/hero-grid/hero-grid-images/grid-image-9.webp";
+
 const Hero: FC = () => {
+    const gridItemRefs = useRef<Array<HTMLDivElement>>([]);
+
+    const shuffleArray = (array: any[]) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    };
+
+    useEffect(() => {
+        const executeTimeline = () => {
+            console.log("timeline started");
+
+            // Create a timeline
+            const tl = gsap.timeline();
+
+            // Shuffle the grid item refs array
+            const shuffledRefs = shuffleArray(gridItemRefs.current);
+
+            // Add animations to the timeline for each grid item
+            shuffledRefs.forEach((gridItem) => {
+                tl.to(gridItem.querySelector(".hero__grid-item-image"), {
+                    opacity: 1,
+                    duration: 0.5,
+                    delay: 0.5,
+                    onComplete: () => {
+                        console.log("one finished");
+                    },
+                });
+            });
+
+            // After all the initial animations are complete, decrease opacity of 5 random items
+            tl.add(() => {
+                // Shuffle the array again
+                const reshuffledRefs = shuffleArray([...shuffledRefs]);
+
+                // Select the first 5 items
+                const selectedItems = reshuffledRefs.slice(0, 5);
+
+                // Decrease opacity for each of the selected items
+                selectedItems.forEach((item) => {
+                    gsap.to(item, {
+                        opacity: 0.2,
+                        delay: 1,
+                        duration: 1.3,
+                    });
+                });
+
+                // Increase opacity for the remaining items
+                const remainingItems = reshuffledRefs.slice(5);
+                remainingItems.forEach((item) => {
+                    gsap.to(item.querySelector(".hero__grid-item-overlay"), {
+                        opacity: 1,
+                        delay: 1,
+                        duration: 1.3,
+                    });
+                });
+            });
+
+            // Reset all opacities to their original state and then restart the timeline
+            tl.add(() => {
+                shuffledRefs.forEach((item) => {
+                    gsap.to(item, {
+                        opacity: 1,
+                        delay: 4,
+                        duration: 1.3,
+                    });
+                    gsap.to(item.querySelector(".hero__grid-item-image"), {
+                        opacity: 0,
+                        delay: 4,
+                        duration: 1.3,
+                    });
+                    gsap.to(item.querySelector(".hero__grid-item-overlay"), {
+                        opacity: 0,
+                        delay: 4,
+                        duration: 1.3,
+                    });
+                });
+            }).add(() => {
+                gsap.delayedCall(5, executeTimeline); // Wait for 5 seconds, then restart the timeline
+            });
+        };
+
+        executeTimeline(); // Start the timeline initially
+    }, []);
+
+    // Create a function to add elements to the refs array
+    const addToRefs = (el: HTMLDivElement) => {
+        if (el && !gridItemRefs.current.includes(el)) {
+            gridItemRefs.current.push(el);
+        }
+    };
+
     return (
         <section className="hero">
             <div className="hero__wrapper">
@@ -23,15 +131,87 @@ const Hero: FC = () => {
                 </div>
                 <div className="hero__visual">
                     <div className="hero__grid">
-                        <div className="hero__grid-item"></div>
-                        <div className="hero__grid-item"></div>
-                        <div className="hero__grid-item"></div>
-                        <div className="hero__grid-item"></div>
-                        <div className="hero__grid-item"></div>
-                        <div className="hero__grid-item"></div>
-                        <div className="hero__grid-item"></div>
-                        <div className="hero__grid-item"></div>
-                        <div className="hero__grid-item"></div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageA} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderA} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageB} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageC} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageD} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageE} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageF} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageG} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderA} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageH} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="hero__grid-item" ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
+                            <img src={heroGridImageI} alt="" className="hero__grid-item-image" />
+                            <div className="hero__grid-item-overlay">
+                                <div className="hero__grid-item-overlay-tag">
+                                    <div className="text-3">High CTR</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
