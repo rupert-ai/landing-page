@@ -29,7 +29,6 @@ const Hero: FC = () => {
 
     useEffect(() => {
         const executeTimeline = () => {
-            console.log("timeline started");
 
             // Create a timeline
             const tl = gsap.timeline();
@@ -43,9 +42,6 @@ const Hero: FC = () => {
                     opacity: 1,
                     duration: 0.5,
                     delay: 0.5,
-                    onComplete: () => {
-                        console.log("one finished");
-                    },
                 });
             });
 

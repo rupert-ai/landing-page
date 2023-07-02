@@ -4,8 +4,10 @@ import { ScrollToPlugin } from "gsap/all";
 import "./Demo.styles.scss";
 import Example from "../../components/Example/Example.component";
 
-import exampleProduct from "../../assets/images/products/1.png";
-import exampleBackground from "../../assets/images/backgrounds/1.png";
+import exampleProductA from "../../assets/images/products/1.png";
+import exampleProductB from "../../assets/images/products/2.png";
+import exampleBackgroundA from "../../assets/images/backgrounds/1.png";
+import exampleBackgroundB from "../../assets/images/backgrounds/2.png";
 
 const Demo: FC = () => {
     gsap.registerPlugin(ScrollToPlugin);
@@ -13,14 +15,19 @@ const Demo: FC = () => {
     const dragCounter = useRef(0);
     const dropRef = useRef<HTMLDivElement | null>(null);
     //const [fileName, setFileName] = useState<string | null>(null);
-    const [imageSrc, setImageSrc] = useState<string | null>(null);
+    const [productImageSrc, setproductImageSrc] = useState<string | null>(null);
+    const [backgroundImageSrc, setBackgroundImageSrc] = useState<string | null>(null);
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const handleExampleProductClick = (image: string) => {
-        setImageSrc(image);
+        setproductImageSrc(image);
         setIsPopupOpen(true);
         onFileUploadSuccess();
+    };
+
+    const handleExampleBackgroundClick = (image: string) => {
+        setBackgroundImageSrc(image);
     };
 
     const handleDrag = (e: DragEvent<HTMLDivElement>) => {
@@ -72,7 +79,7 @@ const Demo: FC = () => {
         // This event listener will happen when the reader has read the file
         reader.onload = () => {
             // Use reader.result to get the data URL of the file
-            setImageSrc(reader.result as string);
+            setproductImageSrc(reader.result as string);
         };
 
         // Read the file as a data URL
@@ -146,12 +153,17 @@ const Demo: FC = () => {
                                 <p className="text-2">Or try with an example</p>
                                 <div className="demo__example-list">
                                     <Example
-                                        image={exampleProduct}
+                                        image={exampleProductA}
                                         onClick={() => {
-                                            handleExampleProductClick(exampleProduct);
+                                            handleExampleProductClick(exampleProductA);
                                         }}
                                     />
-                                    <Example />
+                                    <Example
+                                        image={exampleProductB}
+                                        onClick={() => {
+                                            handleExampleProductClick(exampleProductB);
+                                        }}
+                                    />
                                     <Example />
                                     <Example />
                                     <Example />
@@ -162,7 +174,7 @@ const Demo: FC = () => {
                     </div>
                 </div>
             </section>
-            {isPopupOpen && imageSrc && (
+            {isPopupOpen && productImageSrc && (
                 <section className="generate">
                     <div className="generate__wrapper">
                         <div className="generate__headline">
@@ -179,16 +191,26 @@ const Demo: FC = () => {
                         <div className="generate__widget">
                             <div className="generate__widget-view">
                                 <div className="generate__widget-preview">
-                                    <img alt="" src={imageSrc} className="generate__widget-preview-item" />
-                                    <div className="generate__widget-preview-background"></div>
+                                    <img alt="" src={productImageSrc} className="generate__widget-preview-item" />
+                                    {backgroundImageSrc && <img alt="" src={backgroundImageSrc} className="generate__widget-preview-background" />}
                                 </div>
                                 <div className="generate__widget-select">
                                     <p className="text-2">Or try with an example</p>
                                     <div className="generate__widget-examples">
                                         <div className="generate__widget-track">
                                             <div className="generate__widget-list">
-                                                <Example image={exampleBackground} />
-                                                <Example />
+                                                <Example
+                                                    image={exampleBackgroundA}
+                                                    onClick={() => {
+                                                        handleExampleBackgroundClick(exampleBackgroundA);
+                                                    }}
+                                                />
+                                                <Example
+                                                    image={exampleBackgroundB}
+                                                    onClick={() => {
+                                                        handleExampleBackgroundClick(exampleBackgroundB);
+                                                    }}
+                                                />
                                                 <Example />
                                                 <Example />
                                                 <Example />
