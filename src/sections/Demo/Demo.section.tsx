@@ -1,4 +1,6 @@
 import React, { FC, useRef, useState, DragEvent, ChangeEvent } from "react";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/all";
 import "./Demo.styles.scss";
 import Example from "../../components/Example/Example.component";
 
@@ -6,20 +8,20 @@ import exampleProduct from "../../assets/images/products/1.png";
 import exampleBackground from "../../assets/images/backgrounds/1.png";
 
 const Demo: FC = () => {
+    gsap.registerPlugin(ScrollToPlugin);
     const [dragging, setDragging] = useState(false);
     const dragCounter = useRef(0);
     const dropRef = useRef<HTMLDivElement | null>(null);
-    const [fileName, setFileName] = useState<string | null>(null);
+    //const [fileName, setFileName] = useState<string | null>(null);
     const [imageSrc, setImageSrc] = useState<string | null>(null);
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const handleExampleProductClick = (image: string) => {
         setImageSrc(image);
-        setFileName("example");
         setIsPopupOpen(true);
-        document.documentElement.classList.add("stopped");
-    }
+        onFileUploadSuccess();
+    };
 
     const handleDrag = (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -57,14 +59,12 @@ const Demo: FC = () => {
 
     const handleFiles = (files: FileList) => {
         if (files.length === 0) {
-            console.log("No files selected.");
             return;
         }
 
         const file = files[0]; // Only process the first file.
-        console.log(file);
 
-        setFileName(file.name); // Set the name of the uploaded file.
+        //setFileName(file.name); // Set the name of the uploaded file.
         uploadFile(file); // Upload the file.
 
         const reader = new FileReader();
@@ -79,10 +79,6 @@ const Demo: FC = () => {
         reader.readAsDataURL(file);
 
         uploadFile(file); // Upload the file.
-
-        // Open the popup and disable page scrolling
-        setIsPopupOpen(true);
-        document.documentElement.classList.add("stopped");
     };
 
     const uploadFile = (file: File) => {
@@ -90,12 +86,14 @@ const Demo: FC = () => {
         console.log(`Uploading file: ${file.name}`);
 
         // TODO: Replace with actual logic to run after file upload.
-        onFileUploadSuccess(file);
+        onFileUploadSuccess();
     };
 
-    const onFileUploadSuccess = (file: File) => {
-        // This function will be called after the file upload is successful.
-        console.log(`File upload successful: ${file.name}`);
+    const onFileUploadSuccess = () => {
+        // scroll to the bottom section
+        gsap.to(window, { duration: 0.5, scrollTo: { y: ".generate" } });
+        // Open the popup and disable page scrolling
+        setIsPopupOpen(true);
     };
 
     const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -107,28 +105,27 @@ const Demo: FC = () => {
     const closePopup = () => {
         // Close the popup and enable page scrolling
         setIsPopupOpen(false);
-        document.documentElement.classList.remove("stopped");
     };
 
     return (
-        <section className="demo">
-            <div className="demo__wrapper">
-                <div className="demo__info">
-                    <div className="demo__para">
-                        <h4>
-                            Cutting-edge artificial intelligence algorithms with deep learning capabilities to produce ads that are not only visually appealing
-                            but also highly effective in achieving marketing objectives.
-                        </h4>
+        <>
+            <section className="demo">
+                <div className="demo__wrapper">
+                    <div className="demo__info">
+                        <div className="demo__para">
+                            <h4>
+                                Cutting-edge artificial intelligence algorithms with deep learning capabilities to produce ads that are not only visually
+                                appealing but also highly effective in achieving marketing objectives.
+                            </h4>
+                        </div>
                     </div>
-                </div>
-                <div className="demo__try">
-                    <div className="demo__headline">
-                        <h1 className="h1">Try demo</h1>
-                    </div>
-                    <div className="demo__widget">
-                        <div className="demo__upload">
-                            <p className="text-2">Upload your product photo</p>
-                            {!fileName && (
+                    <div className="demo__try">
+                        <div className="demo__headline">
+                            <h1 className="h1">Try demo</h1>
+                        </div>
+                        <div className="demo__widget">
+                            <div className="demo__upload">
+                                <p className="text-2">Upload your product photo</p>
                                 <label className="file-upload" htmlFor="file-upload">
                                     <div
                                         ref={dropRef}
@@ -143,40 +140,30 @@ const Demo: FC = () => {
                                         </div>
                                     </div>
                                 </label>
-                            )}
-                            {fileName && (
-                                <div
-                                    ref={dropRef}
-                                    onDragEnter={handleDragIn}
-                                    onDragLeave={handleDragOut}
-                                    onDragOver={handleDrag}
-                                    onDrop={handleDrop}
-                                    className="demo__upload-box">
-                                    <div className="demo__upload-overlay">
-                                        <div className="text-3">{fileName}</div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                            </div>
 
-                        <div className="demo__example">
-                            <p className="text-2">Or try with an example</p>
-                            <div className="demo__example-list">
-                                <Example image={exampleProduct} onClick={() => {
-                                    handleExampleProductClick(exampleProduct);
-                                }}/>
-                                <Example />
-                                <Example />
-                                <Example />
-                                <Example />
-                                <Example />
+                            <div className="demo__example">
+                                <p className="text-2">Or try with an example</p>
+                                <div className="demo__example-list">
+                                    <Example
+                                        image={exampleProduct}
+                                        onClick={() => {
+                                            handleExampleProductClick(exampleProduct);
+                                        }}
+                                    />
+                                    <Example />
+                                    <Example />
+                                    <Example />
+                                    <Example />
+                                    <Example />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
             {isPopupOpen && imageSrc && (
-                <div className="generate">
+                <section className="generate">
                     <div className="generate__wrapper">
                         <div className="generate__headline">
                             <h4>Your product ad</h4>
@@ -224,9 +211,9 @@ const Demo: FC = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             )}
-        </section>
+        </>
     );
 };
 

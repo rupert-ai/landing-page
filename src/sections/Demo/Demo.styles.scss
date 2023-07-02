@@ -77,104 +77,92 @@
                         grid-auto-columns: 1fr;
                         align-self: stretch;
                         display: grid;
-                        
                     }
                 }
             }
         }
     }
-    .generate {
-        background-color: #000;
-        position: fixed;
-        z-index: 5;
-        height: 100vh;
-        width: 100vw;
-        top: 0%;
-        left: 0%;
-        right: 0%;
-        bottom: 0%;
-        .generate__wrapper {
-            max-width: 1280px;
-            grid-row-gap: 18rem;
-            flex-direction: column;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 40rem 24rem 28rem;
+}
+.generate {
+    background-color: #000;
+    .generate__wrapper {
+        max-width: 1280px;
+        grid-row-gap: 18rem;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 40rem 24rem 28rem;
+        display: flex;
+        .generate__headline {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             display: flex;
-            overflow: auto;
-            height: 100%;
-            .generate__headline {
-                flex-direction: row;
-                justify-content: space-between;
+            .generate__close {
+                grid-column-gap: 8rem;
+                justify-content: flex-end;
                 align-items: center;
                 display: flex;
-                .generate__close {
-                    grid-column-gap: 8rem;
-                    justify-content: flex-end;
-                    align-items: center;
-                    display: flex;
-                    cursor: pointer;
-                    .generate__x {
-                        width: 12rem;
-                        height: 12rem;
-                    }
+                cursor: pointer;
+                .generate__x {
+                    width: 12rem;
+                    height: 12rem;
                 }
             }
-            .generate__widget {
-                grid-row-gap: 18rem;
-                flex-direction: column;
-                justify-content: flex-end;
-                display: flex;
-                .generate__widget-view {
-                    grid-column-gap: 16rem;
-                    grid-template-rows: auto;
-                    grid-template-columns: 1fr 1fr;
-                    grid-auto-columns: 1fr;
-                    display: grid;
-                    .generate__widget-preview {
-                        background-image: radial-gradient(circle, #fff, #000 71%);
-                        position: relative;
-                        .generate__widget-preview-item {
-                            z-index: 2;
-                            position: absolute;
-                            top: 0%;
-                            bottom: 0%;
-                            left: 0%;
-                            right: 0%;
-                            width: 100%;
-                            height: 100%;
-                            object-fit: contain;
-                        }
-                        .generate__widget-preview-background {
-                            z-index: 1;
-                            position: absolute;
-                            top: 0%;
-                            bottom: 0%;
-                            left: 0%;
-                            right: 0%;
-                        }
+        }
+        .generate__widget {
+            grid-row-gap: 18rem;
+            flex-direction: column;
+            justify-content: flex-end;
+            display: flex;
+            .generate__widget-view {
+                grid-column-gap: 16rem;
+                grid-template-rows: auto;
+                grid-template-columns: 1fr 1fr;
+                grid-auto-columns: 1fr;
+                display: grid;
+                .generate__widget-preview {
+                    background-image: radial-gradient(circle, #fff, #000 71%);
+                    position: relative;
+                    .generate__widget-preview-item {
+                        z-index: 2;
+                        position: absolute;
+                        top: 0%;
+                        bottom: 0%;
+                        left: 0%;
+                        right: 0%;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
                     }
-                    .generate__widget-select {
-                        grid-row-gap: 16rem;
-                        flex-direction: column;
-                        padding: 16rem 12rem;
-                        display: flex;
-                        background: linear-gradient(61.3deg, rgba(255, 255, 255, 0.2) 5.87%, rgba(255, 255, 255, 0.042) 94.03%);
-                        .generate__widget-examples {
-                            overflow: hidden;
-                            .generate__widget-track {
-                                height: 400rem;
-                                .generate__widget-list {
-                                    grid-column-gap: 12rem;
-                                    grid-row-gap: 12rem;
-                                    grid-template-rows: 1fr 1fr;
-                                    grid-template-columns: 1fr 1fr 1fr;
-                                    grid-auto-rows: 1fr;
-                                    grid-auto-columns: 1fr;
-                                    grid-auto-flow: row;
-                                    display: grid;
-                                    
-                                }
+                    .generate__widget-preview-background {
+                        z-index: 1;
+                        position: absolute;
+                        top: 0%;
+                        bottom: 0%;
+                        left: 0%;
+                        right: 0%;
+                    }
+                }
+                .generate__widget-select {
+                    grid-row-gap: 16rem;
+                    flex-direction: column;
+                    padding: 16rem 12rem;
+                    display: flex;
+                    background: linear-gradient(61.3deg, rgba(255, 255, 255, 0.2) 5.87%, rgba(255, 255, 255, 0.042) 94.03%);
+                    .generate__widget-examples {
+                        overflow: hidden;
+                        .generate__widget-track {
+                            height: 400rem;
+                            .generate__widget-list {
+                                grid-column-gap: 12rem;
+                                grid-row-gap: 12rem;
+                                grid-template-rows: 1fr 1fr;
+                                grid-template-columns: 1fr 1fr 1fr;
+                                grid-auto-rows: 1fr;
+                                grid-auto-columns: 1fr;
+                                grid-auto-flow: row;
+                                display: grid;
                             }
                         }
                     }
@@ -245,30 +233,28 @@
                 }
             }
         }
+    }
+    .generate {
+        .generate__wrapper {
+            .generate__widget {
+                .generate__widget-view {
+                    grid-row-gap: 24rem;
+                    grid-template-columns: 1fr;
+                    .generate__widget-preview {
+                        height: 60vw;
+                    }
 
-        .generate {
-            .generate__wrapper {
-                .generate__widget {
-                    .generate__widget-view {
-                        grid-row-gap: 24rem;
-                        grid-template-columns: 1fr;
-                        .generate__widget-preview {
-                            height: 60vw;
-                        }
-
-                        .generate__widget-select {
-                            padding-left: 16rem;
-                            padding-right: 16rem;
-                            .generate__widget-examples {
-                                .generate__widget-track {
-                                    overflow-y: hidden;
-                                    overflow-x: auto;
-                                    .generate__widget-list {
-                                        grid-column-gap: 16rem;
-                                        grid-row-gap: 16rem;
-                                        grid-template-columns: 1fr 1fr 1fr 1fr;
-                                        
-                                    }
+                    .generate__widget-select {
+                        padding-left: 16rem;
+                        padding-right: 16rem;
+                        .generate__widget-examples {
+                            .generate__widget-track {
+                                overflow-y: hidden;
+                                overflow-x: auto;
+                                .generate__widget-list {
+                                    grid-column-gap: 16rem;
+                                    grid-row-gap: 16rem;
+                                    grid-template-columns: 1fr 1fr 1fr 1fr;
                                 }
                             }
                         }
@@ -301,25 +287,24 @@
                 }
             }
         }
-        .generate {
-            .generate__wrapper {
-                padding: 32rem 16rem 24rem;
-                .generate__widget {
-                    .generate__widget-view {
-                        flex-direction: column;
-                        display: flex;
-                        .generate__widget-select {
-                            .generate__widget-examples {
-                                .generate__widget-track {
-                                    height: auto;
-                                    flex-direction: row;
-                                    display: flex;
-                                    .generate__widget-list {
-                                        grid-template-rows: 1fr;
-                                        grid-template-columns: 1fr 1fr 1fr;
-                                        grid-auto-flow: column;
-                                        
-                                    }
+    }
+    .generate {
+        .generate__wrapper {
+            padding: 32rem 16rem 24rem;
+            .generate__widget {
+                .generate__widget-view {
+                    flex-direction: column;
+                    display: flex;
+                    .generate__widget-select {
+                        .generate__widget-examples {
+                            .generate__widget-track {
+                                height: auto;
+                                flex-direction: row;
+                                display: flex;
+                                .generate__widget-list {
+                                    grid-template-rows: 1fr;
+                                    grid-template-columns: 1fr 1fr 1fr;
+                                    grid-auto-flow: column;
                                 }
                             }
                         }
@@ -344,18 +329,18 @@
                 }
             }
         }
-        .generate {
-            .generate__wrapper {
-                .generate__widget {
-                    .generate__widget-view {
-                        .generate__widget-select {
-                            .generate__widget-examples {
-                                .generate__widget-track {
-                                    .generate__widget-list {
-                                        .generate__widget-item {
-                                            width: 116rem;
-                                            height: 116rem;
-                                        }
+    }
+    .generate {
+        .generate__wrapper {
+            .generate__widget {
+                .generate__widget-view {
+                    .generate__widget-select {
+                        .generate__widget-examples {
+                            .generate__widget-track {
+                                .generate__widget-list {
+                                    .generate__widget-item {
+                                        width: 116rem;
+                                        height: 116rem;
                                     }
                                 }
                             }
