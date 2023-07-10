@@ -3,6 +3,8 @@ import gsap from "gsap";
 import "./Hero.styles.scss";
 import Button from "../../components/Button/Button.component";
 
+import heroBGBlur from "../../assets/images/hero-blur.webp";
+
 import heroGridPlaceholderA from "../../assets/images/hero-grid/hero-grid-placeholders/grid-placeholder-1.svg";
 import heroGridPlaceholderB from "../../assets/images/hero-grid/hero-grid-placeholders/grid-placeholder-2.svg";
 
@@ -29,7 +31,6 @@ const Hero: FC = () => {
 
     useEffect(() => {
         const executeTimeline = () => {
-
             // Create a timeline
             const tl = gsap.timeline();
 
@@ -40,8 +41,8 @@ const Hero: FC = () => {
             shuffledRefs.forEach((gridItem) => {
                 tl.to(gridItem.querySelector(".hero__grid-item-image"), {
                     opacity: 1,
-                    duration: 0.5,
-                    delay: 0.5,
+                    duration: 0.25,
+                    delay: 0.25,
                 });
             });
 
@@ -78,22 +79,22 @@ const Hero: FC = () => {
                 shuffledRefs.forEach((item) => {
                     gsap.to(item, {
                         opacity: 1,
-                        delay: 4,
+                        delay: 8,
                         duration: 1.3,
                     });
                     gsap.to(item.querySelector(".hero__grid-item-image"), {
                         opacity: 0,
-                        delay: 4,
+                        delay: 8,
                         duration: 1.3,
                     });
                     gsap.to(item.querySelector(".hero__grid-item-overlay"), {
                         opacity: 0,
-                        delay: 4,
+                        delay: 8,
                         duration: 1.3,
                     });
                 });
             }).add(() => {
-                gsap.delayedCall(5, executeTimeline); // Wait for 5 seconds, then restart the timeline
+                gsap.delayedCall(10, executeTimeline); // Wait for 5 seconds, then restart the timeline
             });
         };
 
@@ -109,6 +110,10 @@ const Hero: FC = () => {
 
     return (
         <section className="hero">
+            <div className="hero__background">
+                <div className="hero__overlay"></div>
+                <img alt="" className="hero__blur" src={heroBGBlur} />
+            </div>
             <div className="hero__wrapper">
                 <div className="hero__info">
                     <div className="hero__headline">

@@ -9,6 +9,8 @@ import exampleProductB from "../../assets/images/products/2.png";
 import exampleBackgroundA from "../../assets/images/backgrounds/1.png";
 import exampleBackgroundB from "../../assets/images/backgrounds/2.png";
 
+import downloadGif from "../../assets/gifs/download.gif";
+
 const Demo: FC = () => {
     gsap.registerPlugin(ScrollToPlugin);
     const [dragging, setDragging] = useState(false);
@@ -143,6 +145,7 @@ const Demo: FC = () => {
                                         className="demo__upload-box">
                                         <input id="file-upload" type="file" onChange={handleFileInput} style={{ display: "none" }} />
                                         <div className="demo__upload-overlay">
+                                            <img alt="" className="upload-gif" src={downloadGif} />
                                             <div className="text-3">{dragging ? "Drop your image here" : "Click, paste or drop a file here to start"}</div>
                                         </div>
                                     </div>
@@ -150,7 +153,7 @@ const Demo: FC = () => {
                             </div>
 
                             <div className="demo__example">
-                                <p className="text-2">Or try with an example</p>
+                                <p className="text-2">Select background style</p>
                                 <div className="demo__example-list">
                                     <Example
                                         image={exampleProductA}
@@ -195,7 +198,7 @@ const Demo: FC = () => {
                                     {backgroundImageSrc && <img alt="" src={backgroundImageSrc} className="generate__widget-preview-background" />}
                                 </div>
                                 <div className="generate__widget-select">
-                                    <p className="text-2">Or try with an example</p>
+                                    <p className="text-2">Select background style</p>
                                     <div className="generate__widget-examples">
                                         <div className="generate__widget-track">
                                             <div className="generate__widget-list">

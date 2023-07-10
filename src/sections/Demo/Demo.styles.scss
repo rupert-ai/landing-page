@@ -58,6 +58,18 @@
                             display: flex;
                             .demo__upload-overlay {
                                 color: #f4f4f4;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                row-gap: 0rem;
+                                flex-direction: column;
+                                padding-bottom: 10rem;
+                                .upload-gif {
+                                    width: 150rem;
+                                    height: 156rem;
+                                    opacity: 0.35;
+                                    margin-bottom: -10rem;
+                                }
                             }
                         }
                     }

@@ -6,6 +6,7 @@
     display: flex;
     position: relative;
     transition: 300ms ease background-color, 300ms ease color;
+    cursor: pointer;
     &:hover {
         color: #000000;
         background-color: #ffffff;
