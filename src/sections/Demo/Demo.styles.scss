@@ -288,6 +288,19 @@
 
             .demo__try {
                 .demo__widget {
+                    .demo__upload {
+                        .file-upload {
+                            .demo__upload-box {
+                                .demo__upload-overlay {
+                                    .upload-gif {
+                                        width: 48rem;
+                                        height: 64rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     .demo__example {
                         .demo__example-list {
                             grid-template-columns: 1fr 1fr 1fr;
@@ -336,6 +349,11 @@
                 .demo__widget {
                     .demo__example {
                         .demo__example-list {
+                            grid-template-columns: 1fr 1fr;
+                            column-gap: 0rem;
+                            row-gap: 12rem;
+                            justify-content: center;
+                            justify-items: center;
                             .demo__example-item {
                                 height: 116rem;
                             }
