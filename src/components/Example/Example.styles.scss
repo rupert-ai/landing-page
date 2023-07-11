@@ -2,11 +2,74 @@
     width: 144rem;
     height: 144rem;
     background-image: linear-gradient(129deg, #000, #fff);
+    position: relative;
     cursor: pointer;
-    .example-item-image{
+    &.tall {
+        height: 194rem;
+    }
+    .example-item-image {
+        &.cover {
+            object-fit: cover;
+        }
+        &.contain {
+            object-fit: contain;
+        }
+    }
+    .example-item-image {
         height: 100%;
         width: 100%;
-        object-fit: contain;
+    }
+    .example-item-overlay {
+        position: absolute;
+        z-index: 1;
+        top: 0%;
+        right: 0%;
+        bottom: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        .example-item-overlay-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0;
+            transition: 200ms ease opacity;
+        }
+        .example-item-overlay-select {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), linear-gradient(rgba(15, 98, 254, 0.1), rgba(15, 98, 254, 0.1));
+            transition: 200ms ease opacity;
+            box-shadow: inset 0 0 0 2px white;
+            .example-item-overlay-select-box {
+                position: absolute;
+                top: 0%;
+                right: 0%;
+                width: 28rem;
+                height: 28rem;
+                background-color: white;
+                background-image: url('data:image/svg+xml,<svg viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.3102 0.624521C11.6754 0.989687 11.6754 1.58174 11.3102 1.9469L4.10354 9.15355L0.637155 5.68716C0.27199 5.322 0.27199 4.72995 0.637155 4.36478C1.00232 3.99962 1.59437 3.99962 1.95954 4.36478L4.10354 6.50878L9.98781 0.624521C10.353 0.259356 10.945 0.259356 11.3102 0.624521Z" fill="%230062FF"/></svg>');
+                background-size: 10rem 12rem;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    &:hover {
+        .example-item-overlay-screen {
+            opacity: 0.2;
+        }
+    }
+    &.selected {
+        .example-item-overlay-select {
+            opacity: 1;
+        }
     }
 }
 

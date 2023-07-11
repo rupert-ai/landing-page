@@ -7,22 +7,24 @@ interface ButtonProps {
     link?: string;
     color?: "blue" | "transparent";
     size?: "big" | "small";
+    textSize?: "small" | "medium" | "large";
+    inactive?: boolean;
     model?: "text";
     icon?: ReactNode;
     isIconBig?: boolean;
-    isTextBig?: boolean;
     onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }
 
-const Button: FC<ButtonProps> = ({ text, type, link, color, size, icon, isIconBig, isTextBig, model, onClick }) => {
+const Button: FC<ButtonProps> = ({ text, type, link, color, size, textSize, inactive, icon, isIconBig, model, onClick }) => {
     const classes = ["button"];
     if (icon) classes.push("button--icon");
     if (isIconBig) classes.push("button--icon_big");
     if (model) classes.push("button--text");
     if (color) classes.push(`button--${color}`);
     if (size) classes.push(`button--${size}`);
+    if (inactive) classes.push("button--inactive");
 
-    const textClasses = `text--button${isTextBig ? "_big" : ""}`;
+    const textClasses = `text--button${textSize ? `_${textSize}` : ""}`;
 
     return link ? (
         <a href={link} className={classes.join(" ")} onClick={onClick}>

@@ -1,6 +1,10 @@
 import React, { FC } from "react";
 import "./Flow.styles.scss";
 
+import stepA from "../../assets/images/flow/step-1.png";
+import stepB from "../../assets/images/flow/step-2.jpg";
+import stepC from "../../assets/images/flow/step-3.jpg";
+
 const Flow: FC = () => {
     return (
         <section className="flow">
@@ -15,7 +19,7 @@ const Flow: FC = () => {
                 </div>
                 <div className="flow__list">
                     <div className="flow__step">
-                        <div className="flow__step-image"></div>
+                        <img src={stepA} alt="" className="flow__step-image" />
                         <div className="flow__step-info">
                             <div className="flow__step-headline">
                                 <div className="flow__step-label">
@@ -31,7 +35,7 @@ const Flow: FC = () => {
                         </div>
                     </div>
                     <div className="flow__step">
-                        <div className="flow__step-image"></div>
+                        <img src={stepB} alt="" className="flow__step-image" />
                         <div className="flow__step-info">
                             <div className="flow__step-headline">
                                 <div className="flow__step-label">
@@ -44,7 +48,7 @@ const Flow: FC = () => {
                         </div>
                     </div>
                     <div className="flow__step">
-                        <div className="flow__step-image"></div>
+                        <img src={stepC} alt="" className="flow__step-image" />
                         <div className="flow__step-info">
                             <div className="flow__step-headline">
                                 <div className="flow__step-label">

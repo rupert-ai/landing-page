@@ -10,6 +10,7 @@ import exampleBackgroundA from "../../assets/images/backgrounds/1.png";
 import exampleBackgroundB from "../../assets/images/backgrounds/2.png";
 
 import downloadGif from "../../assets/gifs/download.gif";
+import Button from "../../components/Button/Button.component";
 
 const Demo: FC = () => {
     gsap.registerPlugin(ScrollToPlugin);
@@ -20,15 +21,20 @@ const Demo: FC = () => {
     const [productImageSrc, setproductImageSrc] = useState<string | null>(null);
     const [backgroundImageSrc, setBackgroundImageSrc] = useState<string | null>(null);
 
+    const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+    const [selectedBackground, setSelectedBackground] = useState<string | null>(null);
+
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const handleExampleProductClick = (image: string) => {
+        setSelectedProduct(image);
         setproductImageSrc(image);
         setIsPopupOpen(true);
         onFileUploadSuccess();
     };
 
     const handleExampleBackgroundClick = (image: string) => {
+        setSelectedBackground(image);
         setBackgroundImageSrc(image);
     };
 
@@ -65,7 +71,6 @@ const Demo: FC = () => {
             handleFiles(e.dataTransfer.files);
         }
     };
-
     const handleFiles = (files: FileList) => {
         if (files.length === 0) {
             return;
@@ -96,6 +101,7 @@ const Demo: FC = () => {
 
         // TODO: Replace with actual logic to run after file upload.
         onFileUploadSuccess();
+        setSelectedProduct(null);
     };
 
     const onFileUploadSuccess = () => {
@@ -114,6 +120,7 @@ const Demo: FC = () => {
     const closePopup = () => {
         // Close the popup and enable page scrolling
         setIsPopupOpen(false);
+        gsap.to(window, { duration: 0.5, scrollTo: { y: ".demo__try", offsetY: 120 } });
     };
 
     return (
@@ -135,7 +142,7 @@ const Demo: FC = () => {
                         <div className="demo__widget">
                             <div className="demo__upload">
                                 <p className="text-2">Upload your product photo</p>
-                                <label className="file-upload" htmlFor="file-upload">
+                                <label className={`file-upload ${dragging ? "active" : ""}`} htmlFor="file-upload">
                                     <div
                                         ref={dropRef}
                                         onDragEnter={handleDragIn}
@@ -156,21 +163,25 @@ const Demo: FC = () => {
                                 <p className="text-2">Select background style</p>
                                 <div className="demo__example-list">
                                     <Example
+                                        selected={selectedProduct === exampleProductA}
                                         image={exampleProductA}
                                         onClick={() => {
                                             handleExampleProductClick(exampleProductA);
                                         }}
+                                        imageCover={"cover"}
                                     />
                                     <Example
+                                        selected={selectedProduct === exampleProductB}
                                         image={exampleProductB}
                                         onClick={() => {
                                             handleExampleProductClick(exampleProductB);
                                         }}
+                                        imageCover={"cover"}
                                     />
-                                    <Example />
-                                    <Example />
-                                    <Example />
-                                    <Example />
+                                    <Example imageCover={"cover"} />
+                                    <Example imageCover={"cover"} />
+                                    <Example imageCover={"cover"} />
+                                    <Example imageCover={"cover"} />
                                 </div>
                             </div>
                         </div>
@@ -195,7 +206,7 @@ const Demo: FC = () => {
                             <div className="generate__widget-view">
                                 <div className="generate__widget-preview">
                                     <img alt="" src={productImageSrc} className="generate__widget-preview-item" />
-                                    {backgroundImageSrc && <img alt="" src={backgroundImageSrc} className="generate__widget-preview-background" />}
+                                    {/* {backgroundImageSrc && <img alt="" src={backgroundImageSrc} className="generate__widget-preview-background" />} */}
                                 </div>
                                 <div className="generate__widget-select">
                                     <p className="text-2">Select background style</p>
@@ -204,35 +215,46 @@ const Demo: FC = () => {
                                             <div className="generate__widget-list">
                                                 <Example
                                                     image={exampleBackgroundA}
+                                                    height="tall"
+                                                    imageCover={"cover"}
+                                                    selected={selectedBackground === exampleBackgroundA}
                                                     onClick={() => {
                                                         handleExampleBackgroundClick(exampleBackgroundA);
                                                     }}
                                                 />
                                                 <Example
                                                     image={exampleBackgroundB}
+                                                    height="tall"
+                                                    imageCover={"cover"}
+                                                    selected={selectedBackground === exampleBackgroundB}
                                                     onClick={() => {
                                                         handleExampleBackgroundClick(exampleBackgroundB);
                                                     }}
                                                 />
-                                                <Example />
-                                                <Example />
-                                                <Example />
-                                                <Example />
-                                                <Example />
-                                                <Example />
-                                                <Example />
-                                                <Example />
-                                                <Example />
-                                                <Example />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example height="tall" imageCover={"cover"} />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="generate__widget-cta">
-                                <a href="/" className="button button--big button--blue">
-                                    <h4>Generate ad variations</h4>
-                                </a>
+                                <Button
+                                    link={"/"}
+                                    text="Generate ad variations"
+                                    size={"big"}
+                                    textSize={"large"}
+                                    color="blue"
+                                    inactive={backgroundImageSrc === null || productImageSrc === null}
+                                />
                             </div>
                         </div>
                     </div>

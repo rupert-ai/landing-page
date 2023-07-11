@@ -126,8 +126,8 @@ const Hero: FC = () => {
                         </div>
                     </div>
                     <div className="hero__cta">
-                        <Button link={"/"} text="Try for free" isTextBig={true} color="blue" />
-                        <Button link={"/"} text="Demo" isTextBig={true} color="transparent" />
+                        <Button link={"/"} text="Try for free" textSize={"medium"} color="blue" />
+                        <Button link={"/"} text="Demo" textSize={"medium"} color="transparent" />
                     </div>
                 </div>
                 <div className="hero__visual">

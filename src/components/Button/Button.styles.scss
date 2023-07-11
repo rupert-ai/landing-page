@@ -7,20 +7,52 @@
     align-items: center;
     display: flex;
     cursor: pointer;
-}
 
-.button.button--blue {
-    color: #fff;
-    background-color: #0062ff;
-}
-
-.button.button--transparent {
-    color: #fff;
-    border: 1px solid #444446;
-}
-
-.button.button--big {
-    height: 64rem;
+    &.button--blue {
+        color: #fff;
+        background-color: #0062ff;
+        transition: 200ms ease background-color;
+        &:hover {
+            background-color: #0353e9;
+        }
+        &.button--inactive {
+            pointer-events: none;
+            background-color: #c6c6c6;
+            color: #8d8d8d;
+        }
+    }
+    &.button.button--transparent {
+        color: #fff;
+        border: 1px solid #444446;
+        transition: 200ms ease background-color, 200ms ease border-color;
+        &:hover {
+            background-color: rgba(141, 141, 141, 0.13);
+            border-color: transparent;
+        }
+    }
+    &.button--big {
+        height: 64rem;
+    }
+    &.button--icon_big {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 8rem;
+    }
+    &.button--text {
+        height: auto;
+        padding: 0rem;
+        margin: 0rem;
+        font-weight: 600;
+    }
+    &.button--icon {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 2rem;
+    }
 }
 
 .text--button {
@@ -29,34 +61,26 @@
     line-height: 1.75;
 }
 
-.button-arrow {
-    width: 16rem;
-    height: 16rem;
-}
-
-.text--button_big {
+.text--button_small {
     letter-spacing: 0.0114286em;
     font-size: 14rem;
     line-height: 1.28571;
 }
 
-.button.button--icon_big {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    column-gap: 8rem;
+.text--button_medium {
+    letter-spacing: 0.0114286em;
+    font-size: 14rem;
+    line-height: 1.28571;
 }
-.button.button--icon {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    column-gap: 2rem;
+
+.text--button_large {
+    letter-spacing: 0.00666667em;
+    font-size: 24rem;
+    font-weight: 400;
+    line-height: 1.125;
 }
-.button.button--text {
-    height: auto;
-    padding: 0rem;
-    margin: 0rem;
-    font-weight: 600;
+
+.button-arrow {
+    width: 16rem;
+    height: 16rem;
 }

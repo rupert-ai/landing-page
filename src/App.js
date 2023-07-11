@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "./components/Header/Header.component";
-import Flow from "./sections/Flow/Flow.section";
-import Tools from "./sections/Tools/Tools.section";
-import Hero from "./sections/Hero/Hero.section";
-import Demo from "./sections/Demo/Demo.section";
+import Flow from "./sections/Flow/Flow.component";
+import Tools from "./sections/Tools/Tools.component";
+import Hero from "./sections/Hero/Hero.component";
+import Demo from "./sections/Demo/Demo.component";
 
 function App() {
 
