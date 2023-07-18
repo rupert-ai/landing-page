@@ -6,8 +6,10 @@ import Example from "../../components/Example/Example.component";
 
 import exampleProductA from "../../assets/images/products/1.png";
 import exampleProductB from "../../assets/images/products/2.png";
+import exampleProductC from "../../assets/images/products/3.png";
 import exampleBackgroundA from "../../assets/images/backgrounds/1.png";
 import exampleBackgroundB from "../../assets/images/backgrounds/2.png";
+import exampleBackgroundC from "../../assets/images/backgrounds/3.png";
 
 import downloadGif from "../../assets/gifs/download.gif";
 import Button from "../../components/Button/Button.component";
@@ -178,7 +180,14 @@ const Demo: FC = () => {
                                         }}
                                         imageCover={"cover"}
                                     />
-                                    <Example imageCover={"cover"} />
+                                    <Example
+                                        selected={selectedProduct === exampleProductC}
+                                        image={exampleProductC}
+                                        onClick={() => {
+                                            handleExampleProductClick(exampleProductC);
+                                        }}
+                                        imageCover={"cover"}
+                                    />
                                     <Example imageCover={"cover"} />
                                     <Example imageCover={"cover"} />
                                     <Example imageCover={"cover"} />
@@ -231,13 +240,15 @@ const Demo: FC = () => {
                                                         handleExampleBackgroundClick(exampleBackgroundB);
                                                     }}
                                                 />
-                                                <Example height="tall" imageCover={"cover"} />
-                                                <Example height="tall" imageCover={"cover"} />
-                                                <Example height="tall" imageCover={"cover"} />
-                                                <Example height="tall" imageCover={"cover"} />
-                                                <Example height="tall" imageCover={"cover"} />
-                                                <Example height="tall" imageCover={"cover"} />
-                                                <Example height="tall" imageCover={"cover"} />
+                                                <Example
+                                                    image={exampleBackgroundC}
+                                                    height="tall"
+                                                    imageCover={"cover"}
+                                                    selected={selectedBackground === exampleBackgroundC}
+                                                    onClick={() => {
+                                                        handleExampleBackgroundClick(exampleBackgroundC);
+                                                    }}
+                                                />
                                                 <Example height="tall" imageCover={"cover"} />
                                                 <Example height="tall" imageCover={"cover"} />
                                                 <Example height="tall" imageCover={"cover"} />

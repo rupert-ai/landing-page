@@ -3,7 +3,7 @@ import gsap from "gsap";
 import "./Hero.styles.scss";
 import Button from "../../components/Button/Button.component";
 
-import heroBGBlur from "../../assets/images/hero-blur.webp";
+import heroBGBlur from "../../assets/images/hero-blur.jpg";
 
 import heroGridPlaceholderA from "../../assets/images/hero-grid/hero-grid-placeholders/grid-placeholder-1.svg";
 import heroGridPlaceholderB from "../../assets/images/hero-grid/hero-grid-placeholders/grid-placeholder-2.svg";
@@ -127,7 +127,14 @@ const Hero: FC = () => {
                     </div>
                     <div className="hero__cta">
                         <Button link={"/"} text="Try for free" textSize={"medium"} color="blue" />
-                        <Button link={"/"} text="Demo" textSize={"medium"} color="transparent" />
+                        <Button
+                            text="Try Demo"
+                            textSize={"medium"}
+                            color="transparent"
+                            onClick={() => {
+                                gsap.to(window, { duration: 0.5, scrollTo: { y: ".demo__try", offsetY: 120 } });
+                            }}
+                        />
                     </div>
                 </div>
                 <div className="hero__visual">
