@@ -54,6 +54,12 @@
         column-gap: 2rem;
     }
 }
+button{
+    margin: unset;
+    padding: unset;
+    width: auto;
+    max-width: none;
+}
 
 .text--button {
     letter-spacing: 0.0133333em;

@@ -76,7 +76,8 @@
                                 }
                             }
                         }
-                        &:hover, &.active {
+                        &:hover,
+                        &.active {
                             .demo__upload-box {
                                 background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='white' stroke-width='1' stroke-dasharray='4%2c 4' stroke-dashoffset='2' stroke-linecap='square'/%3e%3c/svg%3e");
                                 .demo__upload-overlay {
@@ -96,6 +97,7 @@
                     align-items: flex-start;
                     padding: 16rem 12rem;
                     display: flex;
+
                     .demo__example-list {
                         grid-column-gap: 12rem;
                         grid-row-gap: 12rem;
@@ -149,7 +151,9 @@
                 grid-auto-columns: 1fr;
                 display: grid;
                 .generate__widget-preview {
-                    background-image: radial-gradient(circle, #fff, #000 71%);
+                    background-image: url("../../assets/images/demo/background-pattern.png");
+                    object-fit: contain;
+                    background-position: 50% 50%;
                     position: relative;
                     .generate__widget-preview-item {
                         z-index: 2;
@@ -160,7 +164,7 @@
                         right: 0%;
                         width: 100%;
                         height: 100%;
-                        object-fit: contain;
+                        object-fit: cover;
                     }
                     .generate__widget-preview-background {
                         z-index: 1;
@@ -196,7 +200,35 @@
                             }
                         }
                     }
+                    .generate__widget-variations {
+                        overflow: hidden;
+                        .generate__widget-track {
+                            height: 400rem;
+                            .generate__widget-variations-list {
+                                grid-column-gap: 16rem;
+                                grid-row-gap: 16rem;
+                                grid-template-rows: 1fr 1fr;
+                                grid-template-columns: 1fr 1fr;
+                                grid-auto-rows: 1fr;
+                                grid-auto-columns: 1fr;
+                                grid-auto-flow: row;
+                                display: grid;
+                            }
+                        }
+                    }
+                    .generate__widget-return {
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-direction: row;
+                        align-items: center;
+                        column-gap: 8rem;
+                    }
                 }
+            }
+            .generate__widget-cta {
+                display: flex;
+                flex-direction: column;
             }
         }
     }

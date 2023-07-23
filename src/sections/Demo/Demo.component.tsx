@@ -1,18 +1,53 @@
-import React, { FC, useRef, useState, DragEvent, ChangeEvent } from "react";
+import React, { FC, useRef, useState, DragEvent, ChangeEvent, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/all";
 import "./Demo.styles.scss";
 import Example from "../../components/Example/Example.component";
 
-import exampleProductA from "../../assets/images/products/1.png";
-import exampleProductB from "../../assets/images/products/2.png";
-import exampleProductC from "../../assets/images/products/3.png";
 import exampleBackgroundA from "../../assets/images/backgrounds/1.png";
 import exampleBackgroundB from "../../assets/images/backgrounds/2.png";
 import exampleBackgroundC from "../../assets/images/backgrounds/3.png";
+import exampleBackgroundD from "../../assets/images/backgrounds/4.png";
+import exampleBackgroundE from "../../assets/images/backgrounds/5.png";
+import exampleBackgroundF from "../../assets/images/backgrounds/6.png";
 
 import downloadGif from "../../assets/gifs/download.gif";
 import Button from "../../components/Button/Button.component";
+
+// Type for require.context
+interface RequireContext {
+    keys: () => string[];
+    (id: string): any;
+}
+
+// Helper function to import all images
+const importAllImages = (r: RequireContext) => {
+    return r.keys().reduce((images: any, path: string) => {
+        // Remove the leading './' from the path and split it
+        const segments = path.substring(2).split("/");
+        let current = images;
+
+        segments.forEach((segment, index) => {
+            // Check if this is the last segment (an image file)
+            const isLastSegment = index === segments.length - 1;
+
+            if (isLastSegment) {
+                // Remove the file extension and assign the image URL
+                const segmentWithoutExtension = segment.replace(/\.\w+$/, "");
+                current[segmentWithoutExtension] = r(path); // changed this line
+            } else {
+                // Otherwise, this is a directory - ensure the object exists and move on to the next directory
+                current[segment] = current[segment] || {};
+                current = current[segment];
+            }
+        });
+
+        return images;
+    }, {});
+};
+
+// Use it like this:
+const images = importAllImages(require.context("../../assets/images/demo", true, /\.(png|jpe?g|svg)$/));
 
 const Demo: FC = () => {
     gsap.registerPlugin(ScrollToPlugin);
@@ -20,17 +55,34 @@ const Demo: FC = () => {
     const dragCounter = useRef(0);
     const dropRef = useRef<HTMLDivElement | null>(null);
     //const [fileName, setFileName] = useState<string | null>(null);
+
     const [productImageSrc, setproductImageSrc] = useState<string | null>(null);
     const [backgroundImageSrc, setBackgroundImageSrc] = useState<string | null>(null);
 
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
     const [selectedBackground, setSelectedBackground] = useState<string | null>(null);
 
+    const [previewImage, setPreviewImage] = useState<string | null>(null);
+
+    const [variationsGenerated, setVariationsGenerated] = useState<boolean>(false);
+
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    useEffect(() => {
+        if (!selectedProduct || !selectedBackground) {
+            setVariationsGenerated(false);
+        }
+    }, [selectedProduct, selectedBackground]);
 
     const handleExampleProductClick = (image: string) => {
         setSelectedProduct(image);
         setproductImageSrc(image);
+
+        setPreviewImage(images[image]["transparent"])
+
+        setSelectedBackground(null);
+        setBackgroundImageSrc(null);
+
         setIsPopupOpen(true);
         onFileUploadSuccess();
     };
@@ -89,6 +141,7 @@ const Demo: FC = () => {
         reader.onload = () => {
             // Use reader.result to get the data URL of the file
             setproductImageSrc(reader.result as string);
+            setPreviewImage(reader.result as string);
         };
 
         // Read the file as a data URL
@@ -107,10 +160,11 @@ const Demo: FC = () => {
     };
 
     const onFileUploadSuccess = () => {
-        // scroll to the bottom section
-        gsap.to(window, { duration: 0.5, scrollTo: { y: ".generate" } });
         // Open the popup and disable page scrolling
         setIsPopupOpen(true);
+
+        // scroll to the bottom section
+        gsap.to(window, { duration: 0.5, scrollTo: { y: ".generate" } });
     };
 
     const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -123,6 +177,7 @@ const Demo: FC = () => {
         // Close the popup and enable page scrolling
         setIsPopupOpen(false);
         gsap.to(window, { duration: 0.5, scrollTo: { y: ".demo__try", offsetY: 120 } });
+        setSelectedProduct(null);
     };
 
     return (
@@ -162,42 +217,64 @@ const Demo: FC = () => {
                             </div>
 
                             <div className="demo__example">
-                                <p className="text-2">Select background style</p>
+                                <p className="text-2">Select sample product</p>
+
                                 <div className="demo__example-list">
                                     <Example
-                                        selected={selectedProduct === exampleProductA}
-                                        image={exampleProductA}
+                                        selected={selectedProduct === "product-1"}
+                                        image={images["product-1"]["full"]}
                                         onClick={() => {
-                                            handleExampleProductClick(exampleProductA);
+                                            handleExampleProductClick("product-1");
                                         }}
                                         imageCover={"cover"}
                                     />
                                     <Example
-                                        selected={selectedProduct === exampleProductB}
-                                        image={exampleProductB}
+                                        selected={selectedProduct === "product-2"}
+                                        image={images["product-2"]["full"]}
                                         onClick={() => {
-                                            handleExampleProductClick(exampleProductB);
+                                            handleExampleProductClick("product-2");
                                         }}
                                         imageCover={"cover"}
                                     />
                                     <Example
-                                        selected={selectedProduct === exampleProductC}
-                                        image={exampleProductC}
+                                        selected={selectedProduct === "product-3"}
+                                        image={images["product-3"]["full"]}
                                         onClick={() => {
-                                            handleExampleProductClick(exampleProductC);
+                                            handleExampleProductClick("product-3");
                                         }}
                                         imageCover={"cover"}
                                     />
-                                    <Example imageCover={"cover"} />
-                                    <Example imageCover={"cover"} />
-                                    <Example imageCover={"cover"} />
+                                    <Example
+                                        selected={selectedProduct === "product-4"}
+                                        image={images["product-4"]["full"]}
+                                        onClick={() => {
+                                            handleExampleProductClick("product-4");
+                                        }}
+                                        imageCover={"cover"}
+                                    />
+                                    <Example
+                                        selected={selectedProduct === "product-5"}
+                                        image={images["product-5"]["full"]}
+                                        onClick={() => {
+                                            handleExampleProductClick("product-5");
+                                        }}
+                                        imageCover={"cover"}
+                                    />
+                                    <Example
+                                        selected={selectedProduct === "product-6"}
+                                        image={images["product-6"]["full"]}
+                                        onClick={() => {
+                                            handleExampleProductClick("product-6");
+                                        }}
+                                        imageCover={"cover"}
+                                    />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            {isPopupOpen && productImageSrc && (
+            {isPopupOpen && (selectedProduct || productImageSrc) && previewImage && (
                 <section className="generate">
                     <div className="generate__wrapper">
                         <div className="generate__headline">
@@ -214,57 +291,115 @@ const Demo: FC = () => {
                         <div className="generate__widget">
                             <div className="generate__widget-view">
                                 <div className="generate__widget-preview">
-                                    <img alt="" src={productImageSrc} className="generate__widget-preview-item" />
-                                    {/* {backgroundImageSrc && <img alt="" src={backgroundImageSrc} className="generate__widget-preview-background" />} */}
+                                    <img alt="" src={previewImage} className="generate__widget-preview-item" />
                                 </div>
                                 <div className="generate__widget-select">
-                                    <p className="text-2">Select background style</p>
-                                    <div className="generate__widget-examples">
-                                        <div className="generate__widget-track">
-                                            <div className="generate__widget-list">
-                                                <Example
-                                                    image={exampleBackgroundA}
-                                                    height="tall"
-                                                    imageCover={"cover"}
-                                                    selected={selectedBackground === exampleBackgroundA}
-                                                    onClick={() => {
-                                                        handleExampleBackgroundClick(exampleBackgroundA);
-                                                    }}
-                                                />
-                                                <Example
-                                                    image={exampleBackgroundB}
-                                                    height="tall"
-                                                    imageCover={"cover"}
-                                                    selected={selectedBackground === exampleBackgroundB}
-                                                    onClick={() => {
-                                                        handleExampleBackgroundClick(exampleBackgroundB);
-                                                    }}
-                                                />
-                                                <Example
-                                                    image={exampleBackgroundC}
-                                                    height="tall"
-                                                    imageCover={"cover"}
-                                                    selected={selectedBackground === exampleBackgroundC}
-                                                    onClick={() => {
-                                                        handleExampleBackgroundClick(exampleBackgroundC);
-                                                    }}
-                                                />
-                                                <Example height="tall" imageCover={"cover"} />
-                                                <Example height="tall" imageCover={"cover"} />
-                                                <Example height="tall" imageCover={"cover"} />
+                                    {variationsGenerated && selectedProduct ? (
+                                        <div
+                                            className="generate__widget-return"
+                                            onClick={() => {
+                                                setVariationsGenerated(false);
+                                                setPreviewImage(images[selectedProduct]["transparent"]);
+                                            }}>
+                                            <svg className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
+                                                <path d="M7 13L7.705 12.295L3.915 8.5H14V7.5H3.915L7.705 3.705L7 3L2 8L7 13Z" fill="white" />
+                                            </svg>
+                                            <p className="text-2">Back to styles</p>
+                                        </div>
+                                    ) : (
+                                        <p className="text-2">Select background style</p>
+                                    )}
+                                    {variationsGenerated && selectedProduct && selectedBackground ? (
+                                        <div className="generate__widget-variations">
+                                            <div className="generate__widget-track">
+                                                <div className="generate__widget-variations-list">
+                                                    <Example
+                                                        image={images[selectedProduct][selectedBackground]["variation-1"]}
+                                                        imageCover={"cover"}
+                                                        size={"huge"}
+                                                        onClick={() => {
+                                                            setPreviewImage(images[selectedProduct][selectedBackground]["variation-1"]);
+                                                        }}
+                                                    />
+                                                    <Example
+                                                        image={images[selectedProduct][selectedBackground]["variation-2"]}
+                                                        imageCover={"cover"}
+                                                        size={"huge"}
+                                                        onClick={() => {
+                                                            setPreviewImage(images[selectedProduct][selectedBackground]["variation-2"]);
+                                                        }}
+                                                    />
+                                                    <Example
+                                                        image={images[selectedProduct][selectedBackground]["variation-3"]}
+                                                        imageCover={"cover"}
+                                                        size={"huge"}
+                                                        onClick={() => {
+                                                            setPreviewImage(images[selectedProduct][selectedBackground]["variation-3"]);
+                                                        }}
+                                                    />
+                                                    <Example
+                                                        image={images[selectedProduct][selectedBackground]["variation-4"]}
+                                                        imageCover={"cover"}
+                                                        size={"huge"}
+                                                        onClick={() => {
+                                                            setPreviewImage(images[selectedProduct][selectedBackground]["variation-4"]);
+                                                        }}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    ) : (
+                                        <div className="generate__widget-examples">
+                                            <div className="generate__widget-track">
+                                                <div className="generate__widget-list">
+                                                    <Example
+                                                        image={exampleBackgroundA}
+                                                        height="tall"
+                                                        imageCover={"cover"}
+                                                        selected={selectedBackground === "background-1"}
+                                                        onClick={() => {
+                                                            handleExampleBackgroundClick("background-1");
+                                                        }}
+                                                    />
+                                                    <Example
+                                                        image={exampleBackgroundB}
+                                                        height="tall"
+                                                        imageCover={"cover"}
+                                                        selected={selectedBackground === "background-2"}
+                                                        onClick={() => {
+                                                            handleExampleBackgroundClick("background-2");
+                                                        }}
+                                                    />
+                                                    <Example
+                                                        image={exampleBackgroundC}
+                                                        height="tall"
+                                                        imageCover={"cover"}
+                                                        selected={selectedBackground === "background-3"}
+                                                        onClick={() => {
+                                                            handleExampleBackgroundClick("background-3");
+                                                        }}
+                                                    />
+                                                    <Example image={exampleBackgroundD} height="tall" imageCover={"cover"} isLocked={true} />
+                                                    <Example image={exampleBackgroundE} height="tall" imageCover={"cover"} isLocked={true} />
+                                                    <Example image={exampleBackgroundF} height="tall" imageCover={"cover"} isLocked={true} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className="generate__widget-cta">
                                 <Button
-                                    link={"/"}
                                     text="Generate ad variations"
                                     size={"big"}
                                     textSize={"large"}
                                     color="blue"
-                                    inactive={backgroundImageSrc === null || productImageSrc === null}
+                                    inactive={selectedBackground === null || selectedProduct === null}
+                                    onClick={() => {
+                                        if (selectedProduct !== null && selectedBackground !== null) {
+                                            setVariationsGenerated(true);
+                                        }
+                                    }}
                                 />
                             </div>
                         </div>
