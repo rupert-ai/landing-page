@@ -205,8 +205,9 @@
                         .generate__widget-track {
                             height: 400rem;
                             .generate__widget-variations-list {
-                                grid-column-gap: 16rem;
-                                grid-row-gap: 16rem;
+                                padding-right: 58rem;
+                                grid-column-gap: 12rem;
+                                grid-row-gap: 12rem;
                                 grid-template-rows: 1fr 1fr;
                                 grid-template-columns: 1fr 1fr;
                                 grid-auto-rows: 1fr;
