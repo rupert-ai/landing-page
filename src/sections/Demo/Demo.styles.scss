@@ -179,10 +179,12 @@
                     }
                 }
                 .generate__widget-select {
+                    overflow: hidden;
                     grid-row-gap: 16rem;
                     flex-direction: column;
                     padding: 16rem 12rem;
                     display: flex;
+                    position: relative;
                     background: linear-gradient(61.3deg, rgba(255, 255, 255, 0.2) 5.87%, rgba(255, 255, 255, 0.042) 94.03%);
                     .generate__widget-examples {
                         overflow: hidden;
