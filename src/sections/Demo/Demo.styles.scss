@@ -190,6 +190,7 @@
                         overflow: hidden;
                         .generate__widget-track {
                             height: 400rem;
+                            overflow: hidden;
                             .generate__widget-list {
                                 grid-column-gap: 12rem;
                                 grid-row-gap: 12rem;
@@ -199,6 +200,7 @@
                                 grid-auto-columns: 1fr;
                                 grid-auto-flow: row;
                                 display: grid;
+                                overflow: hidden;
                             }
                         }
                     }
@@ -206,8 +208,9 @@
                         overflow: hidden;
                         .generate__widget-track {
                             height: 400rem;
+                            overflow: hidden;
                             .generate__widget-variations-list {
-                                padding-right: 58rem;
+                                padding-right: 64rem;
                                 grid-column-gap: 12rem;
                                 grid-row-gap: 12rem;
                                 grid-template-rows: 1fr 1fr;
@@ -216,6 +219,7 @@
                                 grid-auto-columns: 1fr;
                                 grid-auto-flow: row;
                                 display: grid;
+                                overflow: hidden;
                             }
                         }
                     }

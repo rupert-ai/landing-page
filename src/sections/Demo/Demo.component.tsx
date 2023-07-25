@@ -73,13 +73,13 @@ const Demo: FC = () => {
     const backgroundOptionsRef = useRef(null);
     const variationsRef = useRef(null);
 
-    gsap.set(selectBackgroundRef.current, {position: "absolute"});
+    gsap.set(selectBackgroundRef.current, { position: "absolute" });
     gsap.set(backgroundOptionsRef.current, { position: "absolute" });
 
     useEffect(() => {
         if (variationsGenerated && selectedProduct) {
             console.log("show the variations");
-            
+
             gsap.to(selectBackgroundRef.current, { x: "0rem", opacity: 1, pointerEvents: "auto", duration: 0.5 });
             gsap.to(backToStylesRef.current, { x: "-300rem", opacity: 0, pointerEvents: "none", duration: 0.5 });
 
@@ -94,6 +94,12 @@ const Demo: FC = () => {
             gsap.to(variationsRef.current, { x: "0rem", opacity: 1, pointerEvents: "auto", duration: 0.5 });
         }
     }, [variationsGenerated, selectedProduct]);
+
+    useEffect(() => {
+        if (variationsGenerated && selectedProduct && selectedBackground) {
+            setPreviewImage(images[selectedProduct][selectedBackground]["variation-1"]);
+        }
+    }, [variationsGenerated, selectedProduct, selectedBackground]);
 
     useEffect(() => {
         if (!selectedProduct || !selectedBackground) {
