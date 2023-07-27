@@ -2,6 +2,7 @@ import React, { FC, MouseEventHandler } from "react";
 import "./Example.styles.scss";
 
 import lockedIcon from "../../assets/icons/locked.svg";
+import LoadingImage from "../LoadingImage/LoadingImage.component";
 
 interface ExampleProps {
     image?: string;
@@ -27,7 +28,7 @@ const Example: FC<ExampleProps> = ({ image, imageCover, height, size, onClick, s
                     </div>
                 )}
             </div>
-            <img alt="" className={`example-item-image ${imageCover ? imageCover : "contain"}`} src={image} />
+            {image && <LoadingImage src={image} alt="" className={`example-item-image ${imageCover ? imageCover : "contain"}`} />}
         </div>
     );
 };

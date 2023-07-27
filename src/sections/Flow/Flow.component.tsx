@@ -4,8 +4,6 @@ import "./Flow.styles.scss";
 import stepA from "../../assets/images/flow/step-1.png";
 import stepB from "../../assets/images/flow/step-2.jpg";
 import stepC from "../../assets/images/flow/step-3.jpg";
-import stepD from "../../assets/images/flow/11729.jpg";
-import LoadingImage from "../../components/LoadingImage/LoadingImage.component";
 
 const Flow: FC = () => {
     return (
@@ -51,9 +49,7 @@ const Flow: FC = () => {
                     </div>
                     <div className="flow__step">
                         <img src={stepC} alt="" className="flow__step-image" />
-
                         <div className="flow__step-info">
-                            <LoadingImage src={stepD} alt="Your image description" />
                             <div className="flow__step-headline">
                                 <div className="flow__step-label">
                                     <div className="text--button">Step 3</div>
