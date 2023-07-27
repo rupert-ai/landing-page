@@ -47,7 +47,7 @@ const importAllImages = (r: RequireContext) => {
 };
 
 // Use it like this:
-const images = importAllImages(require.context("../../assets/images/demo", true, /\.(png|jpe?g|svg)$/));
+const images = importAllImages(require.context("../../assets/images/demo", true, /\.(webp|png|jpe?g|svg)$/));
 
 const Demo: FC = () => {
     gsap.registerPlugin(ScrollToPlugin);
@@ -78,15 +78,12 @@ const Demo: FC = () => {
 
     useEffect(() => {
         if (variationsGenerated && selectedProduct) {
-            console.log("show the variations");
-
             gsap.to(selectBackgroundRef.current, { x: "0rem", opacity: 1, pointerEvents: "auto", duration: 0.5 });
             gsap.to(backToStylesRef.current, { x: "-300rem", opacity: 0, pointerEvents: "none", duration: 0.5 });
 
             gsap.to(backgroundOptionsRef.current, { x: "0rem", opacity: 1, pointerEvents: "auto", duration: 0.5 });
             gsap.to(variationsRef.current, { x: "-300rem", opacity: 0, pointerEvents: "none", duration: 0.5 });
         } else {
-            console.log("hide the variations");
             gsap.to(selectBackgroundRef.current, { x: "300rem", opacity: 0, pointerEvents: "none", duration: 0.5 });
             gsap.to(backToStylesRef.current, { x: "0rem", opacity: 1, pointerEvents: "auto", duration: 0.5 });
 
