@@ -13,6 +13,7 @@ import exampleBackgroundF from "../../assets/images/backgrounds/6.png";
 
 import downloadGif from "../../assets/gifs/download.gif";
 import Button from "../../components/Button/Button.component";
+import LoadingImage from "components/LoadingImage/LoadingImage.component";
 
 // Type for require.context
 interface RequireContext {
@@ -321,7 +322,7 @@ const Demo: FC = () => {
                         <div className="generate__widget">
                             <div className="generate__widget-view">
                                 <div className="generate__widget-preview">
-                                    <img alt="" src={previewImage} className="generate__widget-preview-item" />
+                                    <LoadingImage src={previewImage} alt="" className="generate__widget-preview-item" />
                                 </div>
                                 <div className="generate__widget-select">
                                     {selectedProduct && (
