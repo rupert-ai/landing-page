@@ -61,6 +61,7 @@ const Demo: FC = () => {
 
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
     const [selectedBackground, setSelectedBackground] = useState<string | null>(null);
+    const [selectedVariation, setSelectedVariation] = useState<string | null>(null);
 
     const [previewImage, setPreviewImage] = useState<string | null>(null);
 
@@ -91,17 +92,19 @@ const Demo: FC = () => {
             gsap.to(backgroundOptionsRef.current, { x: "300rem", opacity: 0, pointerEvents: "none", duration: 0.5 });
             gsap.to(variationsRef.current, { x: "0rem", opacity: 1, pointerEvents: "auto", duration: 0.5 });
         }
-    }, [variationsGenerated, selectedProduct]);
+    }, [variationsGenerated, selectedProduct, productImageSrc]);
 
     useEffect(() => {
         if (variationsGenerated && selectedProduct && selectedBackground) {
             setPreviewImage(images[selectedProduct][selectedBackground]["variation-1"]);
+            setSelectedVariation("variation-1");
         }
     }, [variationsGenerated, selectedProduct, selectedBackground]);
 
     useEffect(() => {
         if (!selectedProduct || !selectedBackground) {
             setVariationsGenerated(false);
+            setSelectedVariation(null);
         }
     }, [selectedProduct, selectedBackground]);
 
@@ -121,6 +124,13 @@ const Demo: FC = () => {
     const handleExampleBackgroundClick = (image: string) => {
         setSelectedBackground(image);
         setBackgroundImageSrc(image);
+    };
+
+    const handleVariationClick = (image: string) => {
+        if (selectedProduct && selectedBackground) {
+            setPreviewImage(images[selectedProduct][selectedBackground][image]);
+        }
+        setSelectedVariation(image);
     };
 
     const handleDrag = (e: DragEvent<HTMLDivElement>) => {
@@ -325,14 +335,14 @@ const Demo: FC = () => {
                                     <LoadingImage src={previewImage} alt="" className="generate__widget-preview-item" />
                                 </div>
                                 <div className="generate__widget-select">
-                                    {selectedProduct && (
+                                    {(selectedProduct || productImageSrc) && (
                                         <div>
                                             <div
                                                 className="generate__widget-return"
                                                 ref={selectBackgroundRef}
                                                 onClick={() => {
                                                     setVariationsGenerated(false);
-                                                    setPreviewImage(images[selectedProduct]["transparent"]);
+                                                    if (selectedProduct) setPreviewImage(images[selectedProduct]["transparent"]);
                                                 }}>
                                                 <svg className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
                                                     <path d="M7 13L7.705 12.295L3.915 8.5H14V7.5H3.915L7.705 3.705L7 3L2 8L7 13Z" fill="white" />
@@ -346,46 +356,51 @@ const Demo: FC = () => {
                                         </div>
                                     )}
 
-                                    {selectedProduct && (
+                                    {(selectedProduct || productImageSrc) && (
                                         <div>
                                             <div className="generate__widget-variations" ref={backgroundOptionsRef}>
                                                 <div className="generate__widget-track">
-                                                    {selectedBackground && (
-                                                        <div className="generate__widget-variations-list">
-                                                            <Example
-                                                                image={images[selectedProduct][selectedBackground]["variation-1"]}
-                                                                imageCover={"cover"}
-                                                                size={"huge"}
-                                                                onClick={() => {
-                                                                    setPreviewImage(images[selectedProduct][selectedBackground]["variation-1"]);
-                                                                }}
-                                                            />
-                                                            <Example
-                                                                image={images[selectedProduct][selectedBackground]["variation-2"]}
-                                                                imageCover={"cover"}
-                                                                size={"huge"}
-                                                                onClick={() => {
-                                                                    setPreviewImage(images[selectedProduct][selectedBackground]["variation-2"]);
-                                                                }}
-                                                            />
-                                                            <Example
-                                                                image={images[selectedProduct][selectedBackground]["variation-3"]}
-                                                                imageCover={"cover"}
-                                                                size={"huge"}
-                                                                onClick={() => {
-                                                                    setPreviewImage(images[selectedProduct][selectedBackground]["variation-3"]);
-                                                                }}
-                                                            />
-                                                            <Example
-                                                                image={images[selectedProduct][selectedBackground]["variation-4"]}
-                                                                imageCover={"cover"}
-                                                                size={"huge"}
-                                                                onClick={() => {
-                                                                    setPreviewImage(images[selectedProduct][selectedBackground]["variation-4"]);
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    )}
+                                                    {(selectedBackground &&
+                                                        selectedProduct) && (
+                                                            <div className="generate__widget-variations-list">
+                                                                <Example
+                                                                    image={images[selectedProduct][selectedBackground]["variation-1"]}
+                                                                    imageCover={"cover"}
+                                                                    size={"huge"}
+                                                                    selected={selectedVariation === "variation-1"}
+                                                                    onClick={() => {
+                                                                        handleVariationClick("variation-1");
+                                                                    }}
+                                                                />
+                                                                <Example
+                                                                    image={images[selectedProduct][selectedBackground]["variation-2"]}
+                                                                    imageCover={"cover"}
+                                                                    size={"huge"}
+                                                                    selected={selectedVariation === "variation-2"}
+                                                                    onClick={() => {
+                                                                        handleVariationClick("variation-2");
+                                                                    }}
+                                                                />
+                                                                <Example
+                                                                    image={images[selectedProduct][selectedBackground]["variation-3"]}
+                                                                    imageCover={"cover"}
+                                                                    size={"huge"}
+                                                                    selected={selectedVariation === "variation-3"}
+                                                                    onClick={() => {
+                                                                        handleVariationClick("variation-3");
+                                                                    }}
+                                                                />
+                                                                <Example
+                                                                    image={images[selectedProduct][selectedBackground]["variation-4"]}
+                                                                    imageCover={"cover"}
+                                                                    size={"huge"}
+                                                                    selected={selectedVariation === "variation-4"}
+                                                                    onClick={() => {
+                                                                        handleVariationClick("variation-4");
+                                                                    }}
+                                                                />
+                                                            </div>
+                                                        )}
                                                 </div>
                                             </div>
 
