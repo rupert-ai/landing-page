@@ -13,7 +13,7 @@ import exampleBackgroundF from "../../assets/images/backgrounds/6.png";
 
 import downloadGif from "../../assets/gifs/download.gif";
 import Button from "../../components/Button/Button.component";
-import LoadingImage from "components/LoadingImage/LoadingImage.component";
+import LoadingImage from "../../components/LoadingImage/LoadingImage.component";
 
 // Type for require.context
 interface RequireContext {
