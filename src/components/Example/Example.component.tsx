@@ -12,9 +12,10 @@ interface ExampleProps {
     onClick?: MouseEventHandler<HTMLDivElement>;
     selected?: boolean;
     isLocked?: boolean;
+    loadingTime?: number;
 }
 
-const Example: FC<ExampleProps> = ({ image, imageCover, height, size, onClick, selected, isLocked }) => {
+const Example: FC<ExampleProps> = ({ image, imageCover, height, size, onClick, selected, isLocked, loadingTime }) => {
     return (
         <div onClick={onClick} className={`example-item ${height ? height : ""} ${selected ? "selected" : ""} ${size ? size : ""} ${isLocked ? "locked" : ""}`}>
             <div className="example-item-overlay">
@@ -28,7 +29,7 @@ const Example: FC<ExampleProps> = ({ image, imageCover, height, size, onClick, s
                     </div>
                 )}
             </div>
-            {image && <LoadingImage src={image} alt="" className={`example-item-image ${imageCover ? imageCover : "contain"}`} />}
+            {image && <LoadingImage src={image} alt="" className={`example-item-image ${imageCover ? imageCover : "contain"}`} loadingTime={loadingTime} />}
         </div>
     );
 };

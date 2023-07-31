@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LoadingImage.styles.scss";
 import loaderGif from "../../assets/gifs/loading.gif";
 
@@ -6,17 +6,26 @@ interface LoadingImageProps {
     src: string;
     alt: string;
     className: string;
+    loadingTime?: number;
 }
 
-const LoadingImage: React.FC<LoadingImageProps> = ({ src, alt, className }) => {
+const LoadingImage: React.FC<LoadingImageProps> = ({ src, alt, className, loadingTime }) => {
     const [isLoading, setIsLoading] = useState(true);
 
-    const handleImageLoad = () => {
-        const delay = Math.random() * (1500 - 500) + 500;
+    useEffect(() => {
+        setIsLoading(true);
+    }, [src]);
 
-        setTimeout(() => {
+    const handleImageLoad = () => {
+        if (loadingTime) {
+            const delay = Math.random() * (loadingTime * 1.2 - loadingTime * 0.8) + loadingTime * 0.8;
+
+            setTimeout(() => {
+                setIsLoading(false);
+            }, delay);
+        } else {
             setIsLoading(false);
-        }, delay);
+        }
     };
 
     return (

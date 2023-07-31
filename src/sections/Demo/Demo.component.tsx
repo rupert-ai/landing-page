@@ -268,6 +268,7 @@ const Demo: FC = () => {
                                             handleExampleProductClick("product-1");
                                         }}
                                         imageCover={"cover"}
+                                        loadingTime={300}
                                     />
                                     <Example
                                         selected={selectedProduct === "product-2"}
@@ -276,6 +277,7 @@ const Demo: FC = () => {
                                             handleExampleProductClick("product-2");
                                         }}
                                         imageCover={"cover"}
+                                        loadingTime={300}
                                     />
                                     <Example
                                         selected={selectedProduct === "product-3"}
@@ -284,6 +286,7 @@ const Demo: FC = () => {
                                             handleExampleProductClick("product-3");
                                         }}
                                         imageCover={"cover"}
+                                        loadingTime={300}
                                     />
                                     <Example
                                         selected={selectedProduct === "product-4"}
@@ -292,6 +295,7 @@ const Demo: FC = () => {
                                             handleExampleProductClick("product-4");
                                         }}
                                         imageCover={"cover"}
+                                        loadingTime={300}
                                     />
                                     <Example
                                         selected={selectedProduct === "product-5"}
@@ -300,6 +304,7 @@ const Demo: FC = () => {
                                             handleExampleProductClick("product-5");
                                         }}
                                         imageCover={"cover"}
+                                        loadingTime={300}
                                     />
                                     <Example
                                         selected={selectedProduct === "product-6"}
@@ -308,6 +313,7 @@ const Demo: FC = () => {
                                             handleExampleProductClick("product-6");
                                         }}
                                         imageCover={"cover"}
+                                        loadingTime={300}
                                     />
                                 </div>
                             </div>
@@ -332,7 +338,7 @@ const Demo: FC = () => {
                         <div className="generate__widget">
                             <div className="generate__widget-view">
                                 <div className="generate__widget-preview">
-                                    <LoadingImage src={previewImage} alt="" className="generate__widget-preview-item" />
+                                    <LoadingImage loadingTime={200} src={previewImage} alt="" className="generate__widget-preview-item" />
                                 </div>
                                 <div className="generate__widget-select">
                                     {(selectedProduct || productImageSrc) && (
@@ -360,47 +366,50 @@ const Demo: FC = () => {
                                         <div>
                                             <div className="generate__widget-variations" ref={backgroundOptionsRef}>
                                                 <div className="generate__widget-track">
-                                                    {(selectedBackground &&
-                                                        selectedProduct) && (
-                                                            <div className="generate__widget-variations-list">
-                                                                <Example
-                                                                    image={images[selectedProduct][selectedBackground]["variation-1"]}
-                                                                    imageCover={"cover"}
-                                                                    size={"huge"}
-                                                                    selected={selectedVariation === "variation-1"}
-                                                                    onClick={() => {
-                                                                        handleVariationClick("variation-1");
-                                                                    }}
-                                                                />
-                                                                <Example
-                                                                    image={images[selectedProduct][selectedBackground]["variation-2"]}
-                                                                    imageCover={"cover"}
-                                                                    size={"huge"}
-                                                                    selected={selectedVariation === "variation-2"}
-                                                                    onClick={() => {
-                                                                        handleVariationClick("variation-2");
-                                                                    }}
-                                                                />
-                                                                <Example
-                                                                    image={images[selectedProduct][selectedBackground]["variation-3"]}
-                                                                    imageCover={"cover"}
-                                                                    size={"huge"}
-                                                                    selected={selectedVariation === "variation-3"}
-                                                                    onClick={() => {
-                                                                        handleVariationClick("variation-3");
-                                                                    }}
-                                                                />
-                                                                <Example
-                                                                    image={images[selectedProduct][selectedBackground]["variation-4"]}
-                                                                    imageCover={"cover"}
-                                                                    size={"huge"}
-                                                                    selected={selectedVariation === "variation-4"}
-                                                                    onClick={() => {
-                                                                        handleVariationClick("variation-4");
-                                                                    }}
-                                                                />
-                                                            </div>
-                                                        )}
+                                                    {selectedBackground && selectedProduct && (
+                                                        <div className="generate__widget-variations-list">
+                                                            <Example
+                                                                image={images[selectedProduct][selectedBackground]["variation-1"]}
+                                                                imageCover={"cover"}
+                                                                size={"huge"}
+                                                                selected={selectedVariation === "variation-1"}
+                                                                onClick={() => {
+                                                                    handleVariationClick("variation-1");
+                                                                }}
+                                                                loadingTime={2000}
+                                                            />
+                                                            <Example
+                                                                image={images[selectedProduct][selectedBackground]["variation-2"]}
+                                                                imageCover={"cover"}
+                                                                size={"huge"}
+                                                                selected={selectedVariation === "variation-2"}
+                                                                onClick={() => {
+                                                                    handleVariationClick("variation-2");
+                                                                }}
+                                                                loadingTime={2000}
+                                                            />
+                                                            <Example
+                                                                image={images[selectedProduct][selectedBackground]["variation-3"]}
+                                                                imageCover={"cover"}
+                                                                size={"huge"}
+                                                                selected={selectedVariation === "variation-3"}
+                                                                onClick={() => {
+                                                                    handleVariationClick("variation-3");
+                                                                }}
+                                                                loadingTime={2000}
+                                                            />
+                                                            <Example
+                                                                image={images[selectedProduct][selectedBackground]["variation-4"]}
+                                                                imageCover={"cover"}
+                                                                size={"huge"}
+                                                                selected={selectedVariation === "variation-4"}
+                                                                onClick={() => {
+                                                                    handleVariationClick("variation-4");
+                                                                }}
+                                                                loadingTime={2000}
+                                                            />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
 
@@ -415,6 +424,7 @@ const Demo: FC = () => {
                                                             onClick={() => {
                                                                 handleExampleBackgroundClick("background-1");
                                                             }}
+                                                            loadingTime={1000}
                                                         />
                                                         <Example
                                                             image={exampleBackgroundB}
@@ -424,6 +434,7 @@ const Demo: FC = () => {
                                                             onClick={() => {
                                                                 handleExampleBackgroundClick("background-2");
                                                             }}
+                                                            loadingTime={1000}
                                                         />
                                                         <Example
                                                             image={exampleBackgroundC}
@@ -433,10 +444,29 @@ const Demo: FC = () => {
                                                             onClick={() => {
                                                                 handleExampleBackgroundClick("background-3");
                                                             }}
+                                                            loadingTime={1000}
                                                         />
-                                                        <Example image={exampleBackgroundD} height="tall" imageCover={"cover"} isLocked={true} />
-                                                        <Example image={exampleBackgroundE} height="tall" imageCover={"cover"} isLocked={true} />
-                                                        <Example image={exampleBackgroundF} height="tall" imageCover={"cover"} isLocked={true} />
+                                                        <Example
+                                                            image={exampleBackgroundD}
+                                                            height="tall"
+                                                            imageCover={"cover"}
+                                                            isLocked={true}
+                                                            loadingTime={1000}
+                                                        />
+                                                        <Example
+                                                            image={exampleBackgroundE}
+                                                            height="tall"
+                                                            imageCover={"cover"}
+                                                            isLocked={true}
+                                                            loadingTime={1000}
+                                                        />
+                                                        <Example
+                                                            image={exampleBackgroundF}
+                                                            height="tall"
+                                                            imageCover={"cover"}
+                                                            isLocked={true}
+                                                            loadingTime={1000}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
