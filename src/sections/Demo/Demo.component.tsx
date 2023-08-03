@@ -57,7 +57,7 @@ const Demo: FC = () => {
     const dropRef = useRef<HTMLDivElement | null>(null);
 
     const [productImageSrc, setproductImageSrc] = useState<string | null>(null);
-    const [backgroundImageSrc, setBackgroundImageSrc] = useState<string | null>(null);
+    const [, setBackgroundImageSrc] = useState<string | null>(null);
 
     const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
     const [selectedBackground, setSelectedBackground] = useState<string | null>(null);
