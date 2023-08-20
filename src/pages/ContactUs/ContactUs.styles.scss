@@ -1,0 +1,19 @@
+.contact_us__wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 150rem 25rem 0rem;
+    .contact_us__content {
+        padding-right: 188rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        row-gap: 48rem;
+        h3{
+            a{
+                text-decoration: underline;
+                display: inline-block;
+            }
+        }
+    }
+}

@@ -7,12 +7,13 @@ interface ToolCardProps {
     title: string;
     description: string;
     link: string;
+    linkText?: string;
     gif: string;
 }
 
-const ToolCard: FC<ToolCardProps> = ({ title, description, link, gif }) => {
+const ToolCard: FC<ToolCardProps> = ({ title, description, link, linkText, gif }) => {
     return (
-        <a href="/" className="tools__item">
+        <a href={link} className="tools__item">
             <div className="tools__item-info">
                 <div className="tools__item-headline">
                     <h3>{title}</h3>
@@ -20,7 +21,7 @@ const ToolCard: FC<ToolCardProps> = ({ title, description, link, gif }) => {
                         <p className="text-3">{description}</p>
                     </div>
                 </div>
-                <Button link={link} text="Read more" model={"text"} icon={<ButtonArrow />} />
+                <Button type="button" text={linkText ? linkText : "Read more"} model={"text"} icon={<ButtonArrow />} />
             </div>
             <img src={gif} loading="lazy" alt="" className="tools__item-icon" />
         </a>

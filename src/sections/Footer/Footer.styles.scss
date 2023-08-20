@@ -1,0 +1,16 @@
+.footer__wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32rem 24rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .footer__navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        column-gap: 32rem;
+    }
+}

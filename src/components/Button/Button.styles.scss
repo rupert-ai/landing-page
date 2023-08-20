@@ -1,5 +1,4 @@
 .button {
-    height: 40rem;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0);
     flex-direction: column;
@@ -7,6 +6,7 @@
     align-items: center;
     display: flex;
     cursor: pointer;
+    padding: 6rem 12rem;
 
     &.button--blue {
         color: #fff;
@@ -21,6 +21,10 @@
             color: #8d8d8d;
         }
     }
+    &.button--smoke {
+        background: rgba(63, 63, 63, 0.5);
+    }
+
     &.button.button--transparent {
         color: #fff;
         border: 1px solid #444446;
@@ -33,13 +37,10 @@
     &.button--big {
         height: 64rem;
     }
-    &.button--icon_big {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        column-gap: 8rem;
+    &.button--medium {
+        height: 40rem;
     }
+
     &.button--text {
         height: auto;
         padding: 0rem;
@@ -52,9 +53,12 @@
         justify-content: center;
         align-items: center;
         column-gap: 2rem;
+        &.button--icon_big {
+            column-gap: 8rem;
+        }
     }
 }
-button{
+button {
     margin: unset;
     padding: unset;
     width: auto;
@@ -64,26 +68,23 @@ button{
 .text--button {
     letter-spacing: 0.0133333em;
     font-size: 12rem;
-    line-height: 1.75;
+    font-weight: 600;
 }
 
 .text--button_small {
     letter-spacing: 0.0114286em;
     font-size: 14rem;
-    line-height: 1.28571;
 }
 
 .text--button_medium {
     letter-spacing: 0.0114286em;
     font-size: 14rem;
-    line-height: 1.28571;
 }
 
 .text--button_large {
     letter-spacing: 0.00666667em;
     font-size: 24rem;
     font-weight: 400;
-    line-height: 1.125;
 }
 
 .button-arrow {

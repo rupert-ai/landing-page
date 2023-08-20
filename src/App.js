@@ -1,20 +1,63 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Homepage from "pages/Homepage/Homepage.component";
+import PrivacyPolicy from "pages/PrivacyPolicy/PrivacyPolicy.component";
+import TermsOfService from "pages/TermsOfService/TermsOfService.component";
+import ContactUs from "pages/ContactUs/ContactUs.component";
+import FAQ from "pages/FAQ/FAQ.components";
 import Header from "./components/Header/Header.component";
-import Flow from "./sections/Flow/Flow.component";
-import Tools from "./sections/Tools/Tools.component";
-import Hero from "./sections/Hero/Hero.component";
-import Demo from "./sections/Demo/Demo.component";
+import Footer from "sections/Footer/Footer.component";
 
 function App() {
-
     return (
-        <div className="main">
-            <Header />
-            <Hero />
-            <Demo />
-            <Flow />
-            <Tools />
-        </div>
+        <Router>
+            <div className="main">
+                <Header />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <Homepage></Homepage>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/privacy-policy"
+                        element={
+                            <>
+                                <PrivacyPolicy></PrivacyPolicy>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/terms-of-service"
+                        element={
+                            <>
+                                <TermsOfService></TermsOfService>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/contact-us"
+                        element={
+                            <>
+                                <ContactUs></ContactUs>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/faq"
+                        element={
+                            <>
+                                <FAQ></FAQ>
+                            </>
+                        }
+                    />
+                </Routes>
+                <Footer />
+            </div>
+        </Router>
     );
 }
 

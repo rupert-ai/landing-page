@@ -5,11 +5,11 @@ interface ButtonProps {
     text: string;
     type?: "button" | "submit" | "reset";
     link?: string;
-    color?: "blue" | "transparent";
-    size?: "big" | "small";
+    color?: string | "blue";
+    size?: string | "big" | "small";
     textSize?: "small" | "medium" | "large";
     inactive?: boolean;
-    model?: "text";
+    model?: string | "text";
     icon?: ReactNode;
     isIconBig?: boolean;
     onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
