@@ -1,0 +1,101 @@
+.experience_popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    .experience_popup__underlay {
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        z-index: 0;
+        height: 100%;
+        width: 100%;
+    }
+    .experience_popup__card {
+        position: relative;
+        z-index: 1;
+        background: #171718;
+        width: 480rem;
+        .experience_popup__content {
+            display: flex;
+            flex-direction: column;
+            .experience_popup__headline {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                column-gap: 16rem;
+                padding: 16rem;
+                svg{
+                    cursor: pointer;
+                }
+            }
+            .experience_popup__info {
+                padding: 0rem 80rem 48rem 16rem;
+            }
+        }
+        .experience_popup__control {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 58rem;
+            .experience_popup__cta {
+                cursor: pointer;
+                color: #78a9ff;
+                padding: 16rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                .text-2 {
+                    font-weight: 400;
+                    line-height: 1.28;
+                }
+                &.blue {
+                    color: #ffffff;
+                    background: #0f62fe;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 477px) {
+.experience_popup {
+    .experience_popup__card {
+        width: 300rem;
+        .experience_popup__content {
+            .experience_popup__info {
+                padding: 0rem 16rem 16rem 16rem;
+            }
+        }
+        .experience_popup__control {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 58rem;
+            .experience_popup__cta {
+                cursor: pointer;
+                color: #78a9ff;
+                padding: 16rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                .text-2 {
+                    font-weight: 400;
+                    line-height: 1.28;
+                }
+                &.blue {
+                    color: #ffffff;
+                    background: #0f62fe;
+                }
+            }
+        }
+    }
+}
+}

@@ -99,7 +99,7 @@ const Header: React.FC = () => {
                         </svg>
                     </a>
 
-                    <Button text="Go to app" color="smoke" onClick={handleLinkClick} icon={<ButtonArrow />} isIconBig={true} />
+                    <Button text="Go to app" color="smoke" link="https://ai.getrupert.com/" onClick={handleLinkClick} icon={<ButtonArrow />} isIconBig={true} />
                 </div>
                 <div className="burger" onClick={handleMenuClick}>
                     <div className="text--burger">Menu</div>

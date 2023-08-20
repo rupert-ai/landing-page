@@ -45,3 +45,25 @@
         }
     }
 }
+@media only screen and (max-width: 991px) {
+    .faq {
+        .faq__wrapper {
+            padding: 120rem 16rem 40rem;
+            .faq_content {
+                row-gap: 32rem;
+                .faq__list {
+                    .faq__item {
+                        .faq__item-trigger {
+                            padding: 14rem 0rem;
+                        }
+                        .faq__item-dropdown {
+                            .faq__item-dropdown-wrapper {
+                                padding: 24rem 0rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

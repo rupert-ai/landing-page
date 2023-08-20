@@ -28,3 +28,11 @@
         }
     }
 }
+@media only screen and (max-width: 991px) {
+    .policy__wrapper {
+        padding: 120rem 16rem;
+        .policy_content {
+            padding-right: 0rem;
+        }
+    }
+}

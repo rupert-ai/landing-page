@@ -5,11 +5,15 @@ import Demo from "../../sections/Demo/Demo.component";
 import Flow from "../../sections/Flow/Flow.component";
 import Tools from "../../sections/Tools/Tools.component";
 
-const Homepage: FC = () => {
+interface HomepageProps {
+    setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Homepage: FC<HomepageProps> = ({ setShowPopup }) => {
     return (
         <>
-            <Hero />
-            <Demo />
+            <Hero setShowPopup={setShowPopup} />
+            <Demo setShowPopup={setShowPopup} />
             <Flow />
             <Tools />
         </>

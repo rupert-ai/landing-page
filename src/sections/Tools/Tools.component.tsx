@@ -21,7 +21,7 @@ const Tools: FC = () => {
                         title="Go to App"
                         description="Moreover, AdGenius provides valuable recommendations for audience targeting, channel selection, and ad placement, ensuring that your ads reach the right people at the right time."
                         gif={clickGif}
-                        link=""
+                        link="https://ai.getrupert.com/"
                         linkText="Open"
                     />
 

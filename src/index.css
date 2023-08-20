@@ -17,9 +17,19 @@ body {
     font-family: "Ibmplexsans";
 }
 
-.icon{
+.icon {
     width: 16rem;
     height: 16rem;
+}
+
+.icon--medium {
+    width: 20rem;
+    height: 20rem;
+}
+
+.icon--large {
+    width: 24rem;
+    height: 24rem;
 }
 
 @media only screen and (min-width: 1280px) {
@@ -249,8 +259,6 @@ p {
         font-size: 32rem;
     }
 }
-
-
 
 @media screen and (max-width: 479px) {
     .generate__widget-item {

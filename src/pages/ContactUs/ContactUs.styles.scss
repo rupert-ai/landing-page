@@ -9,10 +9,22 @@
         justify-content: flex-start;
         align-items: flex-start;
         row-gap: 48rem;
-        h3{
-            a{
+        h3 {
+            a {
                 text-decoration: underline;
                 display: inline-block;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 991px) {
+    .contact_us__wrapper {
+        padding: 120rem 16rem 0rem;
+        .contact_us__content {
+            padding-right: 0rem;
+            row-gap: 32rem;
+            h3 {
+                font-size: 16rem;
             }
         }
     }

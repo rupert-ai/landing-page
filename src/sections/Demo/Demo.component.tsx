@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, DragEvent, ChangeEvent, useEffect } from "react";
+import React, { FC, useRef, useState, DragEvent, ChangeEvent, useEffect, Dispatch, SetStateAction } from "react";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/all";
 import "./Demo.styles.scss";
@@ -50,7 +50,11 @@ const importAllImages = (r: RequireContext) => {
 // Use it like this:
 const images = importAllImages(require.context("../../assets/images/demo", true, /\.(webp|png|jpe?g|svg)$/));
 
-const Demo: FC = () => {
+interface DemoProps {
+    setShowPopup: Dispatch<SetStateAction<boolean>>;
+}
+
+const Demo: FC<DemoProps> = ({ setShowPopup }) => {
     gsap.registerPlugin(ScrollToPlugin);
     const [dragging, setDragging] = useState(false);
     const dragCounter = useRef(0);
@@ -451,6 +455,9 @@ const Demo: FC = () => {
                                                             height="tall"
                                                             imageCover={"cover"}
                                                             isLocked={true}
+                                                            onClick={() => {
+                                                                setShowPopup(true);
+                                                            }}
                                                             loadingTime={1000}
                                                         />
                                                         <Example
@@ -458,6 +465,9 @@ const Demo: FC = () => {
                                                             height="tall"
                                                             imageCover={"cover"}
                                                             isLocked={true}
+                                                            onClick={() => {
+                                                                setShowPopup(true);
+                                                            }}
                                                             loadingTime={1000}
                                                         />
                                                         <Example
@@ -465,6 +475,9 @@ const Demo: FC = () => {
                                                             height="tall"
                                                             imageCover={"cover"}
                                                             isLocked={true}
+                                                            onClick={() => {
+                                                                setShowPopup(true);
+                                                            }}
                                                             loadingTime={1000}
                                                         />
                                                     </div>

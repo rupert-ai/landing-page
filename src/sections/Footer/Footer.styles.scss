@@ -14,3 +14,16 @@
         column-gap: 32rem;
     }
 }
+@media only screen and (max-width: 477px) {
+.footer__wrapper {
+    flex-direction: column;
+    row-gap: 32rem;
+    .footer__navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        column-gap: 32rem;
+    }
+}
+}

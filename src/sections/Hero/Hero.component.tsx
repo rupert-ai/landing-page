@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import gsap from "gsap";
 import "./Hero.styles.scss";
 import Button from "../../components/Button/Button.component";
@@ -18,7 +18,11 @@ import heroGridImageG from "../../assets/images/hero-grid/hero-grid-images/grid-
 import heroGridImageH from "../../assets/images/hero-grid/hero-grid-images/grid-image-8.webp";
 import heroGridImageI from "../../assets/images/hero-grid/hero-grid-images/grid-image-9.webp";
 
-const Hero: FC = () => {
+interface HeroProps {
+    setShowPopup: Dispatch<SetStateAction<boolean>>;
+}
+
+const Hero: FC<HeroProps> = ({ setShowPopup }) => {
     const gridItemRefs = useRef<Array<HTMLDivElement>>([]);
 
     const shuffleArray = (array: any[]) => {
@@ -126,7 +130,15 @@ const Hero: FC = () => {
                         </div>
                     </div>
                     <div className="hero__cta">
-                        <Button size="medium" link={"/"} text="Try for free" textSize={"medium"} color="blue" />
+                        <Button
+                            size="medium"
+                            text="Try for free"
+                            textSize={"medium"}
+                            color="blue"
+                            onClick={() => {
+                                setShowPopup(true);
+                            }}
+                        />
                         <Button
                             size="medium"
                             text="Try Demo"
