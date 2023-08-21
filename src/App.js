@@ -13,55 +13,55 @@ function App() {
     const [showPopup, setShowPopup] = useState(false);
 
     return (
-        <Router>
-            <div className="main">
-                <Header setShowPopup={setShowPopup} />
-                {showPopup && <ExperiencePopup onClose={() => setShowPopup(false)} />}
-                <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                <Homepage setShowPopup={setShowPopup}></Homepage>
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/privacy-policy"
-                        element={
-                            <>
-                                <PrivacyPolicy></PrivacyPolicy>
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/terms-of-service"
-                        element={
-                            <>
-                                <TermsOfService></TermsOfService>
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/contact-us"
-                        element={
-                            <>
-                                <ContactUs></ContactUs>
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/faq"
-                        element={
-                            <>
-                                <FAQ></FAQ>
-                            </>
-                        }
-                    />
-                </Routes>
-                <Footer />
-            </div>
-        </Router>
+        //<Router>
+        <div className="main">
+            <Header setShowPopup={setShowPopup} />
+            {showPopup && <ExperiencePopup onClose={() => setShowPopup(false)} />}
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <>
+                            <Homepage setShowPopup={setShowPopup}></Homepage>
+                        </>
+                    }
+                />
+                <Route
+                    path="/privacy-policy"
+                    element={
+                        <>
+                            <PrivacyPolicy></PrivacyPolicy>
+                        </>
+                    }
+                />
+                <Route
+                    path="/terms-of-service"
+                    element={
+                        <>
+                            <TermsOfService></TermsOfService>
+                        </>
+                    }
+                />
+                <Route
+                    path="/contact-us"
+                    element={
+                        <>
+                            <ContactUs></ContactUs>
+                        </>
+                    }
+                />
+                <Route
+                    path="/faq"
+                    element={
+                        <>
+                            <FAQ></FAQ>
+                        </>
+                    }
+                />
+            </Routes>
+            <Footer />
+        </div>
+        //</Router>
     );
 }
 
