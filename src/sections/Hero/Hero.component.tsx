@@ -130,15 +130,7 @@ const Hero: FC<HeroProps> = ({ setShowPopup }) => {
                         </div>
                     </div>
                     <div className="hero__cta">
-                        <Button
-                            size="medium"
-                            text="Try for free"
-                            textSize={"medium"}
-                            color="blue"
-                            onClick={() => {
-                                setShowPopup(true);
-                            }}
-                        />
+                        <Button size="medium" text="Try for free" textSize={"medium"} color="blue" link="https://ai.getrupert.com/" />
                         <Button
                             size="medium"
                             text="Try Demo"

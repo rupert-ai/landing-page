@@ -112,6 +112,13 @@ const Demo: FC<DemoProps> = ({ setShowPopup }) => {
         }
     }, [selectedProduct, selectedBackground]);
 
+    const handleFileUpload = (e: DragEvent<HTMLDivElement> | ChangeEvent<HTMLInputElement>) => {
+        setShowPopup(true);
+        e.preventDefault();
+        e.stopPropagation();
+        setDragging(false);
+    };
+
     const handleExampleProductClick = (image: string) => {
         setSelectedProduct(image);
         setproductImageSrc(image);
@@ -160,49 +167,49 @@ const Demo: FC<DemoProps> = ({ setShowPopup }) => {
         }
     };
 
-    const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setDragging(false);
-        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            e.dataTransfer.clearData();
-            dragCounter.current = 0;
-            handleFiles(e.dataTransfer.files);
-        }
-    };
-    const handleFiles = (files: FileList) => {
-        if (files.length === 0) {
-            return;
-        }
+    // const handleDrop = (e: DragEvent<HTMLDivElement>) => {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     setDragging(false);
+    //     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+    //         e.dataTransfer.clearData();
+    //         dragCounter.current = 0;
+    //         handleFiles(e.dataTransfer.files);
+    //     }
+    // };
+    // const handleFiles = (files: FileList) => {
+    //     if (files.length === 0) {
+    //         return;
+    //     }
 
-        const file = files[0]; // Only process the first file.
+    //     const file = files[0]; // Only process the first file.
 
-        //setFileName(file.name); // Set the name of the uploaded file.
-        uploadFile(file); // Upload the file.
+    //     //setFileName(file.name); // Set the name of the uploaded file.
+    //     uploadFile(file); // Upload the file.
 
-        const reader = new FileReader();
+    //     const reader = new FileReader();
 
-        // This event listener will happen when the reader has read the file
-        reader.onload = () => {
-            // Use reader.result to get the data URL of the file
-            setproductImageSrc(reader.result as string);
-            setPreviewImage(reader.result as string);
-        };
+    //     // This event listener will happen when the reader has read the file
+    //     reader.onload = () => {
+    //         // Use reader.result to get the data URL of the file
+    //         setproductImageSrc(reader.result as string);
+    //         setPreviewImage(reader.result as string);
+    //     };
 
-        // Read the file as a data URL
-        reader.readAsDataURL(file);
+    //     // Read the file as a data URL
+    //     reader.readAsDataURL(file);
 
-        uploadFile(file); // Upload the file.
-    };
+    //     uploadFile(file); // Upload the file.
+    // };
 
-    const uploadFile = (file: File) => {
-        // TODO: Replace with your actual file upload logic.
-        console.log(`Uploading file: ${file.name}`);
+    // const uploadFile = (file: File) => {
+    //     // TODO: Replace with your actual file upload logic.
+    //     console.log(`Uploading file: ${file.name}`);
 
-        // TODO: Replace with actual logic to run after file upload.
-        onFileUploadSuccess();
-        setSelectedProduct(null);
-    };
+    //     // TODO: Replace with actual logic to run after file upload.
+    //     onFileUploadSuccess();
+    //     setSelectedProduct(null);
+    // };
 
     const onFileUploadSuccess = () => {
         // Open the popup and disable page scrolling
@@ -212,11 +219,11 @@ const Demo: FC<DemoProps> = ({ setShowPopup }) => {
         gsap.to(window, { duration: 0.5, scrollTo: { y: ".generate" } });
     };
 
-    const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            handleFiles(e.target.files);
-        }
-    };
+    // const handleFileInput = (e: ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.files) {
+    //         handleFiles(e.target.files);
+    //     }
+    // };
 
     const closePopup = () => {
         // Close the popup and enable page scrolling
@@ -250,9 +257,13 @@ const Demo: FC<DemoProps> = ({ setShowPopup }) => {
                                         onDragEnter={handleDragIn}
                                         onDragLeave={handleDragOut}
                                         onDragOver={handleDrag}
-                                        onDrop={handleDrop}
+                                        // onDrop={handleDrop}
+
+                                        onDrop={handleFileUpload}
                                         className="demo__upload-box">
-                                        <input id="file-upload" type="file" onChange={handleFileInput} style={{ display: "none" }} />
+                                        {/* <input id="file-upload" type="file" onChange={handleFileInput} style={{ display: "none" }} /> */}
+                                        <input id="file-upload" type="file" onChange={handleFileUpload} style={{ display: "none" }} />
+
                                         <div className="demo__upload-overlay">
                                             <img alt="" className="upload-gif" src={downloadGif} />
                                             <div className="text-3">{dragging ? "Drop your image here" : "Click, paste or drop a file here to start"}</div>

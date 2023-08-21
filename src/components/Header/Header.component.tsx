@@ -78,7 +78,7 @@ const Header: React.FC = () => {
                 </a>
                 <div className="header__menu">
                     <div className="header__navigation">
-                        <Button text="FAQ" model={"text"} link="/faa" onClick={handleLinkClick} />
+                        <Button text="FAQ" model={"text"} link="/faq" onClick={handleLinkClick} />
                         <Button text="Contact" model={"text"} link="/contact-us" onClick={handleLinkClick} />
                     </div>
 
