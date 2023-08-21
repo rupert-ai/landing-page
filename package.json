@@ -1,5 +1,6 @@
 {
     "name": "rupert",
+    "homepage": "https://www.getrupert.com/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
