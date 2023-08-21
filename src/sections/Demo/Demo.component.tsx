@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState, DragEvent, ChangeEvent, useEffect, Dispatch, SetStateAction } from "react";
+import React, { FC, useRef, useState, DragEvent, ChangeEvent, MouseEvent, useEffect, Dispatch, SetStateAction } from "react";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/all";
 import "./Demo.styles.scss";
@@ -112,7 +112,7 @@ const Demo: FC<DemoProps> = ({ setShowPopup }) => {
         }
     }, [selectedProduct, selectedBackground]);
 
-    const handleFileUpload = (e: DragEvent<HTMLDivElement> | ChangeEvent<HTMLInputElement>) => {
+    const handleFileUpload = (e: DragEvent<HTMLDivElement> | ChangeEvent<HTMLInputElement> | MouseEvent<HTMLLabelElement>) => {
         setShowPopup(true);
         e.preventDefault();
         e.stopPropagation();
@@ -249,29 +249,6 @@ const Demo: FC<DemoProps> = ({ setShowPopup }) => {
                             <h1 className="h1">Try demo</h1>
                         </div>
                         <div className="demo__widget">
-                            <div className="demo__upload">
-                                <p className="text-2">Upload your product photo</p>
-                                <label className={`file-upload ${dragging ? "active" : ""}`} htmlFor="file-upload">
-                                    <div
-                                        ref={dropRef}
-                                        onDragEnter={handleDragIn}
-                                        onDragLeave={handleDragOut}
-                                        onDragOver={handleDrag}
-                                        // onDrop={handleDrop}
-
-                                        onDrop={handleFileUpload}
-                                        className="demo__upload-box">
-                                        {/* <input id="file-upload" type="file" onChange={handleFileInput} style={{ display: "none" }} /> */}
-                                        <input id="file-upload" type="file" onChange={handleFileUpload} style={{ display: "none" }} />
-
-                                        <div className="demo__upload-overlay">
-                                            <img alt="" className="upload-gif" src={downloadGif} />
-                                            <div className="text-3">{dragging ? "Drop your image here" : "Click, paste or drop a file here to start"}</div>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-
                             <div className="demo__example">
                                 <p className="text-2">Select sample product</p>
 
@@ -331,6 +308,28 @@ const Demo: FC<DemoProps> = ({ setShowPopup }) => {
                                         loadingTime={300}
                                     />
                                 </div>
+                            </div>
+                            <div className="demo__upload">
+                                <p className="text-2">Upload your product photo</p>
+                                <label onClick={handleFileUpload} className={`file-upload ${dragging ? "active" : ""}`} htmlFor="file-upload">
+                                    <div
+                                        ref={dropRef}
+                                        onDragEnter={handleDragIn}
+                                        onDragLeave={handleDragOut}
+                                        onDragOver={handleDrag}
+                                        // onDrop={handleDrop}
+
+                                        onDrop={handleFileUpload}
+                                        className="demo__upload-box">
+                                        {/* <input id="file-upload" type="file" onChange={handleFileInput} style={{ display: "none" }} /> */}
+                                        <input id="file-upload" type="file" onChange={handleFileUpload} style={{ display: "none" }} />
+
+                                        <div className="demo__upload-overlay">
+                                            <img alt="" className="upload-gif" src={downloadGif} />
+                                            <div className="text-3">{dragging ? "Drop your image here" : "Click, paste or drop a file here to start"}</div>
+                                        </div>
+                                    </div>
+                                </label>
                             </div>
                         </div>
                     </div>
