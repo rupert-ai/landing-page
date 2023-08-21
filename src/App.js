@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Homepage from "pages/Homepage/Homepage.component";
 import PrivacyPolicy from "pages/PrivacyPolicy/PrivacyPolicy.component";
 import TermsOfService from "pages/TermsOfService/TermsOfService.component";
@@ -13,55 +13,19 @@ function App() {
     const [showPopup, setShowPopup] = useState(false);
 
     return (
-        //<Router>
         <div className="main">
             <Header setShowPopup={setShowPopup} />
             {showPopup && <ExperiencePopup onClose={() => setShowPopup(false)} />}
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <>
-                            <Homepage setShowPopup={setShowPopup}></Homepage>
-                        </>
-                    }
-                />
-                <Route
-                    path="/privacy-policy"
-                    element={
-                        <>
-                            <PrivacyPolicy></PrivacyPolicy>
-                        </>
-                    }
-                />
-                <Route
-                    path="/terms-of-service"
-                    element={
-                        <>
-                            <TermsOfService></TermsOfService>
-                        </>
-                    }
-                />
-                <Route
-                    path="/contact-us"
-                    element={
-                        <>
-                            <ContactUs></ContactUs>
-                        </>
-                    }
-                />
-                <Route
-                    path="/faq"
-                    element={
-                        <>
-                            <FAQ></FAQ>
-                        </>
-                    }
-                />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/contact-us" element={<ContactUs />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/" element={<Homepage setShowPopup={setShowPopup} />} />
             </Routes>
+
             <Footer />
         </div>
-        //</Router>
     );
 }
 
