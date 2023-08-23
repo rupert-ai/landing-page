@@ -101,6 +101,15 @@
     }
 }
 @media screen and (max-width: 479px) {
+    .flow__wrapper {
+        .flow__list {
+            .flow__step {
+                .flow__step-image {
+                    height: 164rem;
+                }
+            }
+        }
+    }
     .flow__arrow {
         width: 40rem;
         height: 40rem;
