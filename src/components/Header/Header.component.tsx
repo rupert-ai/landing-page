@@ -82,7 +82,7 @@ const Header: React.FC = () => {
                         <Button text="Contact" model={"text"} link="/contact-us" onClick={handleLinkClick} />
                     </div>
 
-                    <a href="https://discord.com/">
+                    <a href="https://discord.gg/wdWdWXGb">
                         <svg className="icon" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="Discord" clipPath="url(#clip0_1653_4595)">
                                 <path
