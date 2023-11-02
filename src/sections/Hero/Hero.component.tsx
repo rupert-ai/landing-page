@@ -113,115 +113,115 @@ const Hero: FC<HeroProps> = ({ setShowPopup }) => {
     };
 
     return (
-        <section className="hero">
-            <div className="hero__background">
-                <div className="hero__overlay"></div>
-                <img alt="" className="hero__blur" src={heroBGBlur} />
+        <section className='hero'>
+            <div className='hero__background'>
+                <div className='hero__overlay'></div>
+                <img alt='' className='hero__blur' src={heroBGBlur} />
             </div>
-            <div className="hero__wrapper">
-                <div className="hero__info">
-                    <div className="hero__headline">
-                        <h1>Create and Optimize Image Ads for Maximum Impact</h1>
-                        <div className="hero__para">
-                            <p className="text-3">
+            <div className='hero__wrapper'>
+                <div className='hero__info'>
+                    <div className='hero__headline'>
+                        <h1>Turn boring images into Product Photos that increase your sales</h1>
+                        <div className='hero__para'>
+                            <p className='text-3'>
                                 Create &amp; Pre-test your assets in seconds with deep learning and cognitive science models built with millions of human
                                 reactions
                             </p>
                         </div>
                     </div>
-                    <div className="hero__cta">
-                        <Button size="medium" text="Try for free" textSize={"medium"} color="blue" link="https://ai.getrupert.com/" />
+                    <div className='hero__cta'>
+                        <Button size='medium' text='Try for free' textSize={'medium'} color='blue' link='https://ai.getrupert.com/' />
                         <Button
-                            size="medium"
-                            text="Try Demo"
-                            textSize={"medium"}
-                            color="transparent"
+                            size='medium'
+                            text='Try Demo'
+                            textSize={'medium'}
+                            color='transparent'
                             onClick={() => {
-                                gsap.to(window, { duration: 0.5, scrollTo: { y: ".demo__try", offsetY: 120 } });
+                                gsap.to(window, { duration: 0.5, scrollTo: { y: '.demo__try', offsetY: 120 } });
                             }}
                         />
                     </div>
                 </div>
-                <div className="hero__visual">
-                    <div className="hero__grid">
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageA} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                <div className='hero__visual'>
+                    <div className='hero__grid'>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageA} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderA} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageB} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderA} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageB} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageC} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageC} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageD} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageD} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageE} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageE} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageF} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageF} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageG} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageG} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderA} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageH} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderA} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageH} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="hero__grid-item" ref={addToRefs}>
-                            <img src={heroGridPlaceholderB} alt="" className="hero__grid-item-placeholder" />
-                            <img src={heroGridImageI} alt="" className="hero__grid-item-image" />
-                            <div className="hero__grid-item-overlay">
-                                <div className="hero__grid-item-overlay-tag">
-                                    <div className="text-3">High CTR</div>
+                        <div className='hero__grid-item' ref={addToRefs}>
+                            <img src={heroGridPlaceholderB} alt='' className='hero__grid-item-placeholder' />
+                            <img src={heroGridImageI} alt='' className='hero__grid-item-image' />
+                            <div className='hero__grid-item-overlay'>
+                                <div className='hero__grid-item-overlay-tag'>
+                                    <div className='text-3'>High CTR</div>
                                 </div>
                             </div>
                         </div>
